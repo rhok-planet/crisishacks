@@ -4,7 +4,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _ 
 
 from grid.models import Grid
-from package.models import BaseModel, Package
+from hack.models import BaseModel, Hack
 
 class RotatorManager(models.Manager):
     
@@ -14,7 +14,7 @@ class RotatorManager(models.Manager):
 
 class Dpotw(BaseModel):
     
-    package = models.ForeignKey(Package)
+    hack = models.ForeignKey(Hack)
     start_date = models.DateField(_("Start Date"))
     end_date = models.DateField(_("End Date"))    
     
@@ -23,15 +23,15 @@ class Dpotw(BaseModel):
     class Meta:
         ordering = ('-start_date', '-end_date',)
         
-        verbose_name         = "Django Package of the Week"
-        verbose_name_plural  = "Django Packages of the Week"
+        verbose_name         = "Django Hack of the Week"
+        verbose_name_plural  = "Django Hacks of the Week"
         
     def __unicode__(self):
-        return '%s : %s - %s' % (self.package.title, self.start_date, self.end_date)
+        return '%s : %s - %s' % (self.hack.title, self.start_date, self.end_date)
         
     @models.permalink
     def get_absolute_url(self):
-        return ("package", [self.package.slug])        
+        return ("hack", [self.hack.slug])        
 
 class Gotw(BaseModel):
     

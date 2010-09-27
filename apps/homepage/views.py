@@ -3,21 +3,21 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404 
 from django.template import RequestContext 
 
-from package.models import Category, Package
+from hack.models import Category, Hack
 from homepage.models import Dpotw, Gotw, Tab
 
 def homepage(request, template_name="homepage.html"):
     
     categories = []
-    for category in Category.objects.annotate(package_count=Count("package")):
+    for category in Category.objects.annotate(hack_count=Count("hack")):
         element = {
             "title":category.title,
             "description":category.description,
-            "count": category.package_count,
+            "count": category.hack_count,
             "slug": category.slug,
             "title_plural": category.title_plural,
             "show_pypi": category.show_pypi,
-            "packages": category.package_set.annotate(usage_count=Count("usage")).order_by("-pypi_downloads", "-repo_watchers", "title")[:9]
+            "hacks": category.hack_set.annotate(usage_count=Count("usage")).order_by("-pypi_downloads", "-repo_watchers", "title")[:9]
         }
         categories.append(element)
     

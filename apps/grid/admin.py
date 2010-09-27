@@ -1,17 +1,17 @@
 from django.contrib import admin
 from reversion.admin import VersionAdmin
 
-from grid.models import Element, Feature, Grid, GridPackage
+from grid.models import Element, Feature, Grid, GridHack
 
-class GridPackageInline(admin.TabularInline):
-    model = GridPackage
+class GridHackInline(admin.TabularInline):
+    model = GridHack
     
 class GridAdmin(VersionAdmin):
     inlines = [
-        GridPackageInline,
+        GridHackInline,
     ]
 
 admin.site.register(Element, VersionAdmin)
 admin.site.register(Feature, VersionAdmin)
 admin.site.register(Grid, GridAdmin)
-admin.site.register(GridPackage, VersionAdmin)
+admin.site.register(GridHack, VersionAdmin)

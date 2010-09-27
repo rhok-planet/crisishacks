@@ -6,10 +6,10 @@ from grid.models import Grid
 from grid.views import (
         add_feature,
         add_grid,
-        add_grid_package,
+        add_grid_hack,
         ajax_grid_list,
         delete_feature,
-        delete_grid_package,
+        delete_grid_hack,
         edit_element,
         edit_grid,
         edit_feature,
@@ -39,7 +39,7 @@ urlpatterns = patterns("",
     ), 
     
     url(
-        regex = '^element/(?P<feature_id>\d+)/(?P<package_id>\d+)/$',
+        regex = '^element/(?P<feature_id>\d+)/(?P<hack_id>\d+)/$',
         view    = edit_element,
         name    = 'edit_element',
     ),  
@@ -63,15 +63,15 @@ urlpatterns = patterns("",
     ),       
 
     url(
-        regex = '^package/(?P<id>\d+)/delete/$',
-        view    = delete_grid_package,
-        name    = 'delete_grid_package',
+        regex = '^hack/(?P<id>\d+)/delete/$',
+        view    = delete_grid_hack,
+        name    = 'delete_grid_hack',
     ),       
 
     url(
-        regex = '^(?P<grid_slug>[a-z0-9\-\_]+)/package/add/$',
-        view    = add_grid_package,
-        name    = 'add_grid_package',
+        regex = '^(?P<grid_slug>[a-z0-9\-\_]+)/hack/add/$',
+        view    = add_grid_hack,
+        name    = 'add_grid_hack',
     ),       
 
     url(

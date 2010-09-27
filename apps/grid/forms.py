@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 
-from grid.models import  Element, Feature, Grid, GridPackage
+from grid.models import  Element, Feature, Grid, GridHack
 
 class GridForm(ModelForm):
     
@@ -23,8 +23,8 @@ class FeatureForm(ModelForm):
         model = Feature
         fields = ['title', 'description',]
         
-class GridPackageForm(ModelForm):
+class GridHackForm(ModelForm):
 
     class Meta:
-        model = GridPackage
-        fields = ['package']
+        model = GridHack
+        fields = ['hack']

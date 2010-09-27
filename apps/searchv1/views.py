@@ -6,14 +6,14 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext 
 
 from grid.models import Grid
-from package.models import Package
+from hack.models import Hack
 
 from searchv1.forms import SearchForm
 
-def find_packages_autocomplete(q):
+def find_hacks_autocomplete(q):
     django_dash = 'django-%s' % q
     django_space = 'django %s' % q    
-    return Package.objects.filter(
+    return Hack.objects.filter(
                 Q(title__istartswith=q) | 
                 Q(title__istartswith=django_dash) |
                 Q(title__istartswith=django_space))[:15]
@@ -23,7 +23,7 @@ def find_grids_autocomplete(q):
 
 def search_by_function_autocomplete(request, search_function):
     """
-    Searches in Grids and Packages
+    Searches in Grids and Hacks
     """
     q = request.GET.get('term', '')
     form = SearchForm(request.GET or None)  
@@ -38,15 +38,15 @@ def search_by_function_autocomplete(request, search_function):
 
 def search(request, template_name='searchv1/search.html'):
     """
-    Searches in Grids and Packages
+    Searches in Grids and Hacks
     """
     grids = []
-    packages = []
+    hacks = []
     q = request.GET.get('q', '')
     if q:
         django_dash = 'django-%s' % q
         django_space = 'django %s' % q                
-        packages = Package.objects.filter(
+        hacks = Hack.objects.filter(
                     Q(title__icontains=q) | 
                     Q(title__istartswith=django_dash) |
                     Q(title__istartswith=django_space) |                    
@@ -57,7 +57,7 @@ def search(request, template_name='searchv1/search.html'):
         
     return render_to_response(template_name, {
         'grids': grids,
-        'packages': packages,
+        'hacks': hacks,
         'form':form
         },
         context_instance=RequestContext(request)

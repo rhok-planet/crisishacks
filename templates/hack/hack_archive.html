@@ -1,0 +1,19 @@
+{% extends "hack/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}Hacks{% endblock %}
+
+{% block body %}
+
+    <h1>Latest 15 hacks added</h1>
+
+    <a href="{% url add_hack %}">Add a new hack!</a>
+
+    <div id="hacks">
+        {% for hack in latest %}
+            {% include "hack/_hack.html"%}
+        {% endfor %}
+    </div>
+
+{% endblock %}

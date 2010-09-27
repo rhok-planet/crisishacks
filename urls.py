@@ -9,7 +9,7 @@ admin.autodiscover()
 from pinax.apps.account.openid_consumer import PinaxConsumer
 
 from homepage.views import homepage
-from package.views import package_autocomplete, category, packaginate
+from hack.views import hack_autocomplete, category, packaginate
 
 handler500 = "pinax.views.server_error"
 
@@ -27,7 +27,7 @@ urlpatterns = patterns("",
     url(r"^profiles/", include("idios.urls")),
     url(r"^notices/", include("notification.urls")),
     url(r"^announcements/", include("announcements.urls")),
-    url(r"^packages/", include("package.urls")),
+    url(r"^hacks/", include("hack.urls")),
     url(r"^grids/", include("grid.urls")),  
     url(r"^search/", include("searchv1.urls")),
     url(r"^feeds/", include("feeds.urls")),      
@@ -36,7 +36,7 @@ urlpatterns = patterns("",
     url(r"^categories/$", homepage, name="categories"),
     url(r"^packaginator/$", 
                 direct_to_template,
-                {'template': 'package/packaginator.html'}, 
+                {'template': 'hack/packaginator.html'}, 
                 name="packaginator"), 
                 
     url(r"^packaginate/$", 
@@ -44,9 +44,9 @@ urlpatterns = patterns("",
                 name="packaginate"),                   
     
     url(
-        regex = '^autocomplete/package/$',
-        view = package_autocomplete,
-        name    = 'package_autocomplete',        
+        regex = '^autocomplete/hack/$',
+        view = hack_autocomplete,
+        name    = 'hack_autocomplete',        
     )
     
 )
@@ -54,13 +54,13 @@ urlpatterns = patterns("",
 from tastypie.api import Api
 from apiv1.resources import (
                     GotwResource, DpotwResource,
-                    PackageResource, CategoryResource, RepoResource,
-                    GridResource, PackageResourceBase
+                    HackResource, CategoryResource, RepoResource,
+                    GridResource, HackResourceBase
                     )
 
 v1_api = Api()
-v1_api.register(PackageResourceBase())
-v1_api.register(PackageResource())
+v1_api.register(HackResourceBase())
+v1_api.register(HackResource())
 v1_api.register(CategoryResource())
 v1_api.register(RepoResource())
 v1_api.register(GridResource())

@@ -1,0 +1,31 @@
+{% extends "hack/base.html" %}
+
+{% load i18n %}
+{% load uni_form_tags %}
+
+{% block head_title %}Add new example{% endblock %}
+
+{% block body %}
+
+    <h1>Add new example</h1>
+    
+    <form class="uniForm" method="post">
+        {% csrf_token %}
+        <fieldset>
+            {{ form|as_uni_form }}
+
+            <div class="form_block">        
+                <input type="submit" name="add" value="Add new hack">
+                <a href="{% url hack hack.slug %}">cancel</a>
+            </div>            
+        </fieldset>
+
+    </form>
+
+{% endblock %}
+
+{% block extra_body %}
+<script>
+    $("#id_title").focus();
+</script>
+{% endblock %}

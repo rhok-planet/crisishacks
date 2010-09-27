@@ -1,0 +1,26 @@
+<div id="target">
+    <h2>{% if hacks.count %}Hacks{% else %}No hacks found{% endif %}</h2>
+    {% if hacks.count %}
+        <p class="editable-cell">Click a hack to add it to the grid.</p>      
+    {% endif %}
+    {% for hack in hacks %}
+        {% include "hack/_hack.html" %}
+    {% endfor %}
+    <script type="text/javascript">
+       
+        {% for hack in hacks %}
+            $('#hack-{{ hack.id }}').mouseover(function() {
+                $('#hack-{{ hack.id }}').addClass("clickable");
+            });
+            $('#hack-{{ hack.id }}').mouseout(function() {
+                $('#hack-{{ hack.id }}').removeClass("clickable");
+            });
+            $('#hack-{{ hack.id }}').click(function() {
+                
+                $('#hack-field').attr("value", {{ hack.id }});
+                $("form#grid-hack-form").submit();
+            });
+        {% endfor %}
+
+    </script>    
+</div>

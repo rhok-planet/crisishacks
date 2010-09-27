@@ -7,12 +7,12 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext 
 
 
-from grid.forms import ElementForm, FeatureForm, GridForm, GridPackageForm
-from grid.models import Element, Feature, Grid, GridPackage
-from package.models import Package
+from grid.forms import ElementForm, FeatureForm, GridForm, GridHackForm
+from grid.models import Element, Feature, Grid, GridHack
+from hack.models import Hack
 
 def grids(request, template_name="grid/grids.html"):
-    grids = Grid.objects.all().annotate(gridpackage_count=Count('gridpackage'), feature_count=Count('feature'))
+    grids = Grid.objects.all().annotate(gridhack_count=Count('gridhack'), feature_count=Count('feature'))
     return render_to_response(
         template_name, {
             'grids': grids,
@@ -23,23 +23,23 @@ def grid_detail(request, slug, template_name="grid/grid_detail.html"):
     grid = get_object_or_404(Grid, slug=slug)
     features = grid.feature_set.all()
     
-    gp = grid.gridpackage_set.select_related('gridpackage', 'package__repo', 'package__category')
-    grid_packages = gp.annotate(usage_count=Count('package__usage')).order_by('-usage_count', 'package')
+    gp = grid.gridhack_set.select_related('gridhack', 'hack__repo', 'hack__category')
+    grid_hacks = gp.annotate(usage_count=Count('hack__usage')).order_by('-usage_count', 'hack')
     
-    # Get a list of all elements for this grid, and then package them into a
+    # Get a list of all elements for this grid, and then hack them into a
     # dictionary so we can easily lookup the element for every
-    # feature/grid_package combination.
+    # feature/grid_hack combination.
     elements_mapping = {}
-    all_elements = Element.objects.all().filter(feature__in=features, grid_package__in=grid_packages)
+    all_elements = Element.objects.all().filter(feature__in=features, grid_hack__in=grid_hacks)
     for element in all_elements:
         grid_mapping = elements_mapping.setdefault(element.feature_id, {})
-        grid_mapping[element.grid_package_id] = element
+        grid_mapping[element.grid_hack_id] = element
     
     return render_to_response(
         template_name, {
             'grid': grid,
             'features': features,
-            'grid_packages': grid_packages,
+            'grid_hacks': grid_hacks,
             'elements': elements_mapping,
         }, context_instance = RequestContext(request)
     )
@@ -124,29 +124,29 @@ def delete_feature(request, id, template_name="grid/edit_feature.html"):
     return HttpResponseRedirect(reverse('grid', kwargs={'slug': feature.grid.slug}))
 
 
-@permission_required('grid.delete_gridpackage')
-def delete_grid_package(request, id, template_name="grid/edit_feature.html"):
+@permission_required('grid.delete_gridhack')
+def delete_grid_hack(request, id, template_name="grid/edit_feature.html"):
 
-    package = get_object_or_404(GridPackage, id=id)
-    Element.objects.filter(grid_package=package).delete()
-    package.delete()
+    hack = get_object_or_404(GridHack, id=id)
+    Element.objects.filter(grid_hack=hack).delete()
+    hack.delete()
 
-    return HttpResponseRedirect(reverse('grid', kwargs={'slug': package.grid.slug}))
+    return HttpResponseRedirect(reverse('grid', kwargs={'slug': hack.grid.slug}))
 
         
 @login_required
-def edit_element(request, feature_id, package_id, template_name="grid/edit_element.html"):
+def edit_element(request, feature_id, hack_id, template_name="grid/edit_element.html"):
     
     feature = get_object_or_404(Feature, pk=feature_id)
-    grid_package = get_object_or_404(GridPackage, pk=package_id)    
+    grid_hack = get_object_or_404(GridHack, pk=hack_id)    
     
-    # Sanity check to make sure both the feature and grid_package are related to
+    # Sanity check to make sure both the feature and grid_hack are related to
     # the same grid!
-    if feature.grid_id != grid_package.grid_id:
+    if feature.grid_id != grid_hack.grid_id:
         raise Http404
     
     element, created = Element.objects.get_or_create(
-                                    grid_package=grid_package,
+                                    grid_hack=grid_hack,
                                     feature=feature
                                     )    
         
@@ -159,30 +159,30 @@ def edit_element(request, feature_id, package_id, template_name="grid/edit_eleme
     return render_to_response(template_name, { 
         'form': form,
         'feature':feature,
-        'package':grid_package.package,
+        'hack':grid_hack.hack,
         'grid':feature.grid
         }, 
         context_instance=RequestContext(request))        
 
 @login_required
-def add_grid_package(request, grid_slug, template_name="grid/add_grid_package.html"):
+def add_grid_hack(request, grid_slug, template_name="grid/add_grid_hack.html"):
 
     grid = get_object_or_404(Grid, slug=grid_slug)
-    grid_package = GridPackage()
-    form = GridPackageForm(request.POST or None, instance=grid_package)    
+    grid_hack = GridHack()
+    form = GridHackForm(request.POST or None, instance=grid_hack)    
     message = ''
 
     if form.is_valid(): 
-        package = get_object_or_404(Package, id=request.POST['package'])    
+        hack = get_object_or_404(Hack, id=request.POST['hack'])    
         try:
-            GridPackage.objects.get(grid=grid, package=package)
-            message = "Sorry, but '%s' is already in this grid." % package.title
-        except GridPackage.DoesNotExist:
-            package = GridPackage(
+            GridHack.objects.get(grid=grid, hack=hack)
+            message = "Sorry, but '%s' is already in this grid." % hack.title
+        except GridHack.DoesNotExist:
+            hack = GridHack(
                         grid=grid, 
-                        package=package
+                        hack=hack
                     )
-            package.save()
+            hack.save()
             redirect = request.POST.get('redirect','')
             if redirect:
                 return HttpResponseRedirect(redirect)
@@ -204,9 +204,9 @@ def ajax_grid_list(request, template_name="grid/ajax_grid_list.html"):
     grids = []
     if q:
         grids = Grid.objects.filter(title__istartswith=q)
-    package_id = request.GET.get('package_id','')
-    if package_id:
-        grids = grids.exclude(gridpackage__package__id=package_id)
+    hack_id = request.GET.get('hack_id','')
+    if hack_id:
+        grids = grids.exclude(gridhack__hack__id=hack_id)
     return render_to_response(template_name, {
         'grids': grids
         },

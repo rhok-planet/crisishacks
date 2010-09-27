@@ -12,7 +12,7 @@ PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 # tells Pinax to use the default theme
 PINAX_THEME = "default"
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 # tells Pinax to serve media through the staticfiles app.
@@ -31,7 +31,7 @@ MANAGERS = ADMINS
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3", # Add "postgresql_psycopg2", "postgresql", "mysql", "sqlite3" or "oracle".
-        "NAME": "/home/dp/djangopackages/db/dev.db",                       # Or path to database file if using sqlite3.
+        "NAME": "/Users/jlivni/projects/rhok/dev.db",                       # Or path to database file if using sqlite3.
         "USER": "",                             # Not used with sqlite3.
         "PASSWORD": "",                         # Not used with sqlite3.
         "HOST": "",                             # Set to empty string for localhost. Not used with sqlite3.
@@ -111,7 +111,7 @@ MIDDLEWARE_CLASSES = [
     #"debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
-ROOT_URLCONF = "djangopackages.urls"
+ROOT_URLCONF = "crisishacks.urls"
 
 TEMPLATE_DIRS = [
     os.path.join(PROJECT_ROOT, "templates"),
@@ -135,7 +135,7 @@ TEMPLATE_CONTEXT_PROCESSORS = [
     "notification.context_processors.notification",
     "announcements.context_processors.site_wide_announcements",
 
-    "package.context_processors.used_packages_list",
+    "hack.context_processors.used_hacks_list",
     "homepage.context_processors.grid_tabs",
     "homepage.context_processors.current_path",
 ]
@@ -180,7 +180,7 @@ INSTALLED_APPS = [
     "about",
     "grid",
     "homepage",
-    "package",
+    "hack",
     "profiles",
     "searchv1",
     "apiv1",
@@ -216,14 +216,14 @@ EMAIL_CONFIRMATION_DAYS = 2
 EMAIL_DEBUG = DEBUG
 
 # Added the following so that outgoing mail comes from postfix (local)
-DEFAULT_FROM_EMAIL = 'Django Packages <djangopackages-noreply@djangopackages.com>'
+DEFAULT_FROM_EMAIL = 'Django Hacks <djangohacks-noreply@djangohacks.com>'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'localhost'
-EMAIL_HOST_USER = 'djangopackages-noreply@djangopackages.com'
+EMAIL_HOST_USER = 'djangohacks-noreply@djangohacks.com'
 EMAIL_HOST_PASSWORD = ''
 EMAIL_PORT = 25
-EMAIL_SUBJECT_PREFIX = '[Django Packages] '
+EMAIL_SUBJECT_PREFIX = '[Django Hacks] '
 
 URCHIN_ID = "UA-18066389-1"
 
@@ -238,7 +238,7 @@ logging.basicConfig(
         filemode='a',
 )
 
-CACHE_BACKEND = 'locmem://'
+#CACHE_BACKEND = 'locmem://'
 
 # local_settings.py can be used to override environment-specific settings
 # like database and email that differ between development and production.

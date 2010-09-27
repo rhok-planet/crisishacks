@@ -6,7 +6,7 @@ from django.core.urlresolvers import reverse
 
 from grid.models import Grid
 from homepage.models import Dpotw, Gotw
-from package.models import Package, Category, Repo
+from hack.models import Hack, Category, Repo
 
 # TODO - exclude ID, repo_commits, and other fields not yet used
 
@@ -52,11 +52,11 @@ class EnhancedModelResource(ModelResource):
         return reverse("api_dispatch_detail", kwargs=kwargs)
 
 
-class PackageResourceBase(EnhancedModelResource):    
+class HackResourceBase(EnhancedModelResource):    
 
     class Meta:
-        queryset = Package.objects.all()
-        resource_name = 'package'
+        queryset = Hack.objects.all()
+        resource_name = 'hack'
         allowed_methods = ['get']
         include_absolute_url = True
         lookup_field = 'slug'
@@ -64,7 +64,7 @@ class PackageResourceBase(EnhancedModelResource):
 
 class GridResource(EnhancedModelResource):
     
-    packages = fields.ToManyField(PackageResourceBase, "packages")    
+    hacks = fields.ToManyField(HackResourceBase, "hacks")    
     
     class Meta:
         queryset = Grid.objects.all()
@@ -77,10 +77,10 @@ class DpotwResource(EnhancedModelResource):
 
     class Meta:
         queryset = Dpotw.objects.all()
-        resource_name = 'package-of-the-week'
+        resource_name = 'hack-of-the-week'
         allowed_methods = ['get']
         include_absolute_url = True
-        lookup_field = 'package__slug'
+        lookup_field = 'hack__slug'
 
 class GotwResource(EnhancedModelResource):
 
@@ -107,15 +107,15 @@ class RepoResource(ModelResource):
         resource_name = 'repo'
         allowed_methods = ['get']
 
-class PackageResource(PackageResourceBase):
+class HackResource(HackResourceBase):
 
     category    = fields.ForeignKey(CategoryResource, "category")
     repo        = fields.ForeignKey(RepoResource, "repo")    
     grids       = fields.ToManyField(GridResource, "grid_set")
 
     class Meta:
-        queryset = Package.objects.all()
-        resource_name = 'package'
+        queryset = Hack.objects.all()
+        resource_name = 'hack'
         allowed_methods = ['get']
         include_absolute_url = True
         lookup_field = 'slug'

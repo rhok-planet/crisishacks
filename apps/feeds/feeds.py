@@ -1,14 +1,14 @@
 from django.contrib.syndication.views import Feed
 from django.utils.feedgenerator import Atom1Feed
-from package.models import Package
+from hack.models import Hack
 
-class RssLatestPackagesFeed(Feed):
-    title = "Latest Django packages added"
-    link = "/packages/latest/"
-    description = "The last 15 packages added"
+class RssLatestHacksFeed(Feed):
+    title = "Latest Django hacks added"
+    link = "/hacks/latest/"
+    description = "The last 15 hacks added"
 
     def items(self):
-        return Package.objects.all().order_by("-created")[:15]
+        return Hack.objects.all().order_by("-created")[:15]
 
     def item_title(self, item):
         return item.title
@@ -19,6 +19,6 @@ class RssLatestPackagesFeed(Feed):
     def item_pubdate(self, item):
         return item.created
         
-class AtomLatestPackagesFeed(RssLatestPackagesFeed):
+class AtomLatestHacksFeed(RssLatestHacksFeed):
     feed_type = Atom1Feed
-    subtitle = RssLatestPackagesFeed.description
+    subtitle = RssLatestHacksFeed.description

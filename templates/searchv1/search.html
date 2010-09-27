@@ -30,13 +30,13 @@
                 {% include "grid/snippets/grid.html" %}
             {% endfor %}
         </div>
-        <div id="package-listing">
-            <h2>{% if packages.count %}Packages{% else %}No packages found{% endif %}</h2>
-            <p><a class="medium awesome darkbrown" href="{% url add_package %}">add package »</a>
-                <a href="{% url latest_packages %}">latest</a> <a href="{% url packages %}">all</a>
+        <div id="hack-listing">
+            <h2>{% if hacks.count %}Hacks{% else %}No hacks found{% endif %}</h2>
+            <p><a class="medium awesome darkbrown" href="{% url add_hack %}">add hack »</a>
+                <a href="{% url latest_hacks %}">latest</a> <a href="{% url hacks %}">all</a>
             </p>
-            {% for package in packages %}
-                {% include "package/_package.html"%}
+            {% for hack in hacks %}
+                {% include "hack/_hack.html"%}
             {% endfor %}
         </div>    
     </div>
@@ -59,15 +59,15 @@
         });   
     {% endfor %}    
     
-    {% for package in packages %}
-        $('#package-{{ package.id }}').mouseover(function() {
-            $('#package-{{ package.id }}').addClass("clickable");
+    {% for hack in hacks %}
+        $('#hack-{{ hack.id }}').mouseover(function() {
+            $('#hack-{{ hack.id }}').addClass("clickable");
         });
-        $('#package-{{ package.id }}').mouseout(function() {
-            $('#package-{{ package.id }}').removeClass("clickable");
+        $('#hack-{{ hack.id }}').mouseout(function() {
+            $('#hack-{{ hack.id }}').removeClass("clickable");
         });
-        $('#package-{{ package.id }}').click(function() {
-            $(location).attr("href","{% url package package.slug %}");
+        $('#hack-{{ hack.id }}').click(function() {
+            $(location).attr("href","{% url hack hack.slug %}");
         });        
     {% endfor %}
 </script>

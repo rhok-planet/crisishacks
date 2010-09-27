@@ -11,29 +11,29 @@
   { "fields" : { "created" : "2010-01-01 12:00:00",
         "grid" : 1,
         "modified" : "2010-01-01 12:00:00",
-        "package" : 1
+        "hack" : 1
       },
-    "model" : "grid.gridpackage",
+    "model" : "grid.gridhack",
     "pk" : 1
   },
   { "fields" : { "created" : "2010-01-01 12:00:00",
         "grid" : 1,
         "modified" : "2010-01-01 12:00:00",
-        "package" : 2
+        "hack" : 2
       },
-    "model" : "grid.gridpackage",
+    "model" : "grid.gridhack",
     "pk" : 2
   },
   { "fields" : { "created" : "2010-01-01 12:00:00",
         "grid" : 1,
         "modified" : "2010-01-01 12:00:00",
-        "package" : 3
+        "hack" : 3
       },
-    "model" : "grid.gridpackage",
+    "model" : "grid.gridhack",
     "pk" : 3
   },
   { "fields" : { "created" : "2010-01-01 12:00:00",
-        "description" : "Does this package come with tests?",
+        "description" : "Does this hack come with tests?",
         "grid" : 1,
         "modified" : "2010-01-01 12:00:00",
         "title" : "Has tests?"
@@ -43,7 +43,7 @@
   },
   { "fields" : { "created" : "2010-01-01 12:00:00",
         "feature" : 1,
-        "grid_package" : 1,
+        "grid_hack" : 1,
         "modified" : "2010-01-01 12:00:00",
         "text" : "Yes"
       },
@@ -56,7 +56,7 @@
         "slug" : "apps",
         "title" : "App"
       },
-    "model" : "package.category",
+    "model" : "hack.category",
     "pk" : 1
   },
   { "fields" : { "created" : "2010-01-01 12:00:00",
@@ -66,7 +66,7 @@
         "title" : "Github",
         "url" : "http://github.com"
       },
-    "model" : "package.repo",
+    "model" : "hack.repo",
     "pk" : 1
   },
   { "fields" : { "created" : "2010-01-01 12:00:00",
@@ -76,7 +76,7 @@
         "title" : "BitBucket",
         "url" : "http://bitbucket.com"
       },
-    "model" : "package.repo",
+    "model" : "hack.repo",
     "pk" : 2
   },
   { "fields" : { "created" : "2010-01-01 12:00:00",
@@ -86,7 +86,7 @@
         "title" : "Google Code",
         "url" : "http://code.google.com/"
       },
-    "model" : "package.repo",
+    "model" : "hack.repo",
     "pk" : 3
   },
   { "fields" : { "category" : 1,
@@ -96,7 +96,7 @@
         "pypi_downloads" : 0,
         "pypi_url" : "",
         "pypi_version" : "",
-        "related_packages" : [  ],
+        "related_hacks" : [  ],
         "repo" : 1,
         "repo_commits" : 0,
         "repo_description" : "Increase your testing ability with this steroid free supplement.",
@@ -106,7 +106,7 @@
         "slug" : "testability",
         "title" : "Testability"
       },
-    "model" : "package.package",
+    "model" : "hack.hack",
     "pk" : 1
   },
   { "fields" : { "category" : 1,
@@ -116,7 +116,7 @@
         "pypi_downloads" : 0,
         "pypi_url" : "",
         "pypi_version" : "",
-        "related_packages" : [  ],
+        "related_hacks" : [  ],
         "repo" : 1,
         "repo_commits" : 0,
         "repo_description" : "Test everything under the sun with one command!",
@@ -126,7 +126,7 @@
         "slug" : "supertester",
         "title" : "Supertester"
       },
-    "model" : "package.package",
+    "model" : "hack.hack",
     "pk" : 1
   },
   { "fields" : { "category" : 1,
@@ -136,7 +136,7 @@
         "pypi_downloads" : 0,
         "pypi_url" : "",
         "pypi_version" : "",
-        "related_packages" : [  ],
+        "related_hacks" : [  ],
         "repo" : 1,
         "repo_commits" : 0,
         "repo_description" : "Make testing as painless as waxing your legs.",
@@ -146,13 +146,13 @@
         "slug" : "serious-testing",
         "title" : "Serious Testing"
       },
-    "model" : "package.package",
+    "model" : "hack.hack",
     "pk" : 1
   },
   { "fields" : { "name" : "Moderators",
-        "permissions" : [ [ "delete_gridpackage",
+        "permissions" : [ [ "delete_gridhack",
               "grid",
-              "gridpackage"
+              "gridhack"
             ],
             [ "delete_feature",
               "grid",

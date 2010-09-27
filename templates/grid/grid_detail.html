@@ -8,7 +8,7 @@
 {% load i18n %}
 {% load cache %}
 {% load grid_tags %}
-{% load package_tags %}
+{% load hack_tags %}
 
 {% block head_title %}{{ object.title }}{% endblock %}
 
@@ -60,19 +60,19 @@
 
     <p></p>
     
-    {% if grid_packages.count %}
+    {% if grid_hacks.count %}
     
         {% if request.user.is_authenticated %}        
-            <p><img src="{{ STATIC_URL }}img/icon_addlink.gif" />&nbsp;<a href="{% url add_grid_package grid.slug %}">Add another package</a></p>
+            <p><img src="{{ STATIC_URL }}img/icon_addlink.gif" />&nbsp;<a href="{% url add_grid_hack grid.slug %}">Add another hack</a></p>
         {% endif %}        
     
         <table id="grid" border="3">
             <thead>
                 <tr>
-                    <th>Package</th>
-                    {% for grid_package in grid_packages %}
+                    <th>Hack</th>
+                    {% for grid_hack in grid_hacks %}
                         <th>
-                          <a href="{% url package grid_package.package.slug %}">{{ grid_package.package.title }}</a>{% if perms.grid.delete_gridpackage %}&nbsp;<a href="#" id="package-delete-{{ grid_package.pk }}"><img src="{{ STATIC_URL }}img/icon_deletelink.gif" alt="delete"/></a>{% endif %}
+                          <a href="{% url hack grid_hack.hack.slug %}">{{ grid_hack.hack.title }}</a>{% if perms.grid.delete_gridhack %}&nbsp;<a href="#" id="hack-delete-{{ grid_hack.pk }}"><img src="{{ STATIC_URL }}img/icon_deletelink.gif" alt="delete"/></a>{% endif %}
                         </th>
                     {% endfor %}
                 </tr>
@@ -80,28 +80,28 @@
             <tbody>
                 <tr class="even">
                     <td>Description</td>
-                    {% for grid_package in grid_packages %}
-                        <td>{{ grid_package.package.repo_description|truncatewords:20|wordwrap:30|linebreaksbr }}</td>
+                    {% for grid_hack in grid_hacks %}
+                        <td>{{ grid_hack.hack.repo_description|truncatewords:20|wordwrap:30|linebreaksbr }}</td>
                     {% endfor %}
                 </tr>                    
                 <tr class="odd">
                     <td>Category</td>
-                    {% for grid_package in grid_packages %}
-                        <td>{{ grid_package.package.category }}</td>
+                    {% for grid_hack in grid_hacks %}
+                        <td>{{ grid_hack.hack.category }}</td>
                     {% endfor %}
                 </tr>                
                 <tr class="even">
                     <td># Using This</td>
-                    {% for grid_package in grid_packages %}
+                    {% for grid_hack in grid_hacks %}
                         <td class="usage-container">
-                            <span class="usage-count">{{ grid_package.usage_count }}</span>
+                            <span class="usage-count">{{ grid_hack.usage_count }}</span>
                             &nbsp;
                             <span class="usage-button">
-                                {% with grid_package.package as package %}
-                                    {% if package.pk in used_packages_list %}
-                                    {% include "package/remove_usage_button.html" %}
+                                {% with grid_hack.hack as hack %}
+                                    {% if hack.pk in used_hacks_list %}
+                                    {% include "hack/remove_usage_button.html" %}
                                     {% else %}
-                                    {% include "package/add_usage_button.html" %}
+                                    {% include "hack/add_usage_button.html" %}
                                     {% endif %}
                                 {% endwith %}
                             </span>
@@ -110,10 +110,10 @@
                 </td>
                 <tr class="even">
                     <td>Downloads</td>
-                    {% for grid_package in grid_packages %}
+                    {% for grid_hack in grid_hacks %}
                         <td>
-                            {% if grid_package.package.pypi_version %}
-                                {{ grid_package.package.pypi_downloads|default:"n/a" }}
+                            {% if grid_hack.hack.pypi_version %}
+                                {{ grid_hack.hack.pypi_downloads|default:"n/a" }}
                             {% else %}
                                 n/a
                             {% endif %}
@@ -123,50 +123,50 @@
                 </tr>
                 <tr class="odd">
                     <td>Version</td>
-                    {% for grid_package in grid_packages %}
-                        <td>{{ grid_package.package.pypi_version|default:"n/a" }}</td>
+                    {% for grid_hack in grid_hacks %}
+                        <td>{{ grid_hack.hack.pypi_version|default:"n/a" }}</td>
                     {% endfor %}
             
                 </tr>
                 <tr class="even">
                     <td>Repo</td>
-                    {% for grid_package in grid_packages %}
-                        <td>{{ grid_package.package.repo }}</td>
+                    {% for grid_hack in grid_hacks %}
+                        <td>{{ grid_hack.hack.repo }}</td>
                     {% endfor %}
                 </tr>            
                 <tr class="even">
                     <td>Commits</td>
-                    {% for grid_package in grid_packages %}
-                        {% cache 86400 package.commitchart grid_package.package %}                
-                            <td><img class="package-githubcommits" src="http://chart.apis.google.com/chart?cht=bvg&chs=105x20&chd=t:{{ grid_package.package|commits_over_52 }}&chco=666666&chbh=1,1,1&chds=0,20" /></td>
+                    {% for grid_hack in grid_hacks %}
+                        {% cache 86400 hack.commitchart grid_hack.hack %}                
+                            <td><img class="hack-githubcommits" src="http://chart.apis.google.com/chart?cht=bvg&chs=105x20&chd=t:{{ grid_hack.hack|commits_over_52 }}&chco=666666&chbh=1,1,1&chds=0,20" /></td>
                         {% endcache %}
                     {% endfor %}
                 </tr>
                 <tr class="odd">
                     <td>Repo Watchers</td>
-                    {% for grid_package in grid_packages %}
-                        <td>{{ grid_package.package.repo_watchers|default:"n/a" }}</td>
+                    {% for grid_hack in grid_hacks %}
+                        <td>{{ grid_hack.hack.repo_watchers|default:"n/a" }}</td>
                     {% endfor %}
                 </tr>
                 <tr class="even">
                     <td>Repo Forks</td>
-                    {% for grid_package in grid_packages %}
-                        <td>{{ grid_package.package.repo_forks|default:"n/a" }}</td>
+                    {% for grid_hack in grid_hacks %}
+                        <td>{{ grid_hack.hack.repo_forks|default:"n/a" }}</td>
                     {% endfor %}
                 </tr>                  
                 <tr class="odd">
                     <td>Participants</td>
-                    {% for grid_package in grid_packages %}
+                    {% for grid_hack in grid_hacks %}
                         <td>
-                            {% for collaborator in grid_package.package.participant_list %}
+                            {% for collaborator in grid_hack.hack.participant_list %}
                                 {% if forloop.counter <= 10 %}                                
-                                    <a href="{{ grid_package.package.repo.url }}/{{ collaborator }}">{{ collaborator }}</a>
+                                    <a href="{{ grid_hack.hack.repo.url }}/{{ collaborator }}">{{ collaborator }}</a>
                                     {% if not forloop.last %}
                                         <br />
                                     {% endif %}
                                 {% endif %}
                                 {% if forloop.counter == 11 %}
-                                    <a href="{% url package grid_package.package.slug %}">more...</a>
+                                    <a href="{% url hack grid_hack.hack.slug %}">more...</a>
                                 {% endif %}
                             {% endfor %}                        
                         </td>
@@ -175,9 +175,9 @@
                 {% for feature in features %}
                     <tr class="{% cycle 'even' 'odd' %}">
                         <td>{{ feature.title }}</td>
-                        {% for grid_package in grid_packages %}
-                            {% with elements|hash:feature.pk|hash:grid_package.pk as element %}
-                                <td class="clickable" id="element-f{{ feature.pk }}-p{{ grid_package.pk }}">{% if element %}{{ element.text|style_element|safe|urlize|linebreaksbr }}{% endif %}<noscript> <a class="edit" href="{% url edit_element feature.pk grid_package.pk %}">[edit]</a></noscript></td>
+                        {% for grid_hack in grid_hacks %}
+                            {% with elements|hash:feature.pk|hash:grid_hack.pk as element %}
+                                <td class="clickable" id="element-f{{ feature.pk }}-p{{ grid_hack.pk }}">{% if element %}{{ element.text|style_element|safe|urlize|linebreaksbr }}{% endif %}<noscript> <a class="edit" href="{% url edit_element feature.pk grid_hack.pk %}">[edit]</a></noscript></td>
                             {% endwith %}
                         {% endfor %}
                     </tr>
@@ -191,7 +191,7 @@
         {% endif %}
                     
     {% else %}  
-        <p><img src="{{ STATIC_URL }}img/icon_addlink.gif" />&nbsp;<a href="{% url add_grid_package grid.slug %}">Add a package to get a grid view</a></p>
+        <p><img src="{{ STATIC_URL }}img/icon_addlink.gif" />&nbsp;<a href="{% url add_grid_hack grid.slug %}">Add a hack to get a grid view</a></p>
     {% endif %}
         
 
@@ -205,13 +205,13 @@
                 {% if request.user.is_authenticated %}
                     // Handle element edit redirects
                     {% for feature in features %}
-                        {% for grid_package in grid_packages %}
-                        {% with elements|hash:feature.pk|hash:grid_package.pk as element %}
+                        {% for grid_hack in grid_hacks %}
+                        {% with elements|hash:feature.pk|hash:grid_hack.pk as element %}
 
                         {% endwith %}                        
                         
-                            $("td#element-f{{ feature.pk }}-p{{ grid_package.pk }}").click(function() {
-                                var url = "{% url edit_element feature.pk grid_package.pk %}";    
+                            $("td#element-f{{ feature.pk }}-p{{ grid_hack.pk }}").click(function() {
+                                var url = "{% url edit_element feature.pk grid_hack.pk %}";    
                                 $(location).attr('href',url);                        
                             });
                         {% endfor %}
@@ -235,11 +235,11 @@
                         {% endfor %}
                     {% endif %}
                     
-                    {% if perms.grid.delete_gridpackage %}
-                        // handle package deletes
-                        {% for grid_package in grid_packages %}
-                            $("a#package-delete-{{ grid_package.pk }}").click(function(e) {
-                                delete_confirmation(e, '{% url delete_grid_package grid_package.pk %}')
+                    {% if perms.grid.delete_gridhack %}
+                        // handle hack deletes
+                        {% for grid_hack in grid_hacks %}
+                            $("a#hack-delete-{{ grid_hack.pk }}").click(function(e) {
+                                delete_confirmation(e, '{% url delete_grid_hack grid_hack.pk %}')
                             });
                         {% endfor %}
                     {% endif %}

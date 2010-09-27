@@ -1,0 +1,9 @@
+<dl class="hack-item" id="hack-{{ hack.id }}">
+    <dt><strong><a href="{% url hack hack.slug %}">{{ hack.title }}</a></strong></dt>
+    <dd class="date"><strong>Added</strong> {{ hack.created|timesince }} ago</dd>
+    <dd class="counts">
+            <strong>Downloads</strong> {{ hack.pypi_downloads }}
+            <strong>Watchers</strong> {{ hack.repo_watchers }}
+    </dd>
+    <dd class="description">{{ hack.repo_description }}</dd>        
+</dl>

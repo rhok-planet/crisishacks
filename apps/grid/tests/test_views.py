@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.test.client import Client
 from django.core.urlresolvers import reverse
 
-from grid.models import Element, Feature, GridPackage
+from grid.models import Element, Feature, GridHack
 
 class FunctionalGridTest(TestCase):
     fixtures = ['test_initial_data.json']
@@ -96,7 +96,7 @@ class FunctionalGridTest(TestCase):
 
     def test_edit_element_view(self):
         client = Client()
-        url = reverse('edit_element', kwargs={'feature_id': '1', 'package_id': '1'})
+        url = reverse('edit_element', kwargs={'feature_id': '1', 'hack_id': '1'})
         response = client.get(url)
         
         # The response should be a redirect, since the user is not logged in.
@@ -108,9 +108,9 @@ class FunctionalGridTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'grid/edit_element.html')
 
-    def test_add_gridpackage_view(self):
+    def test_add_gridhack_view(self):
         client = Client()
-        url = reverse('add_grid_package', kwargs={'grid_slug': 'testing'})
+        url = reverse('add_grid_hack', kwargs={'grid_slug': 'testing'})
         response = client.get(url)
         
         # The response should be a redirect, since the user is not logged in.
@@ -120,24 +120,24 @@ class FunctionalGridTest(TestCase):
         self.assertTrue(client.login(username='user', password='user'))
         response = client.get(url)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'grid/add_grid_package.html')
+        self.assertTemplateUsed(response, 'grid/add_grid_hack.html')
 
-    def test_delete_gridpackage_view(self):
-        count = GridPackage.objects.count()
+    def test_delete_gridhack_view(self):
+        count = GridHack.objects.count()
         client = Client()
         
         # Since this user doesn't have the appropriate permissions, none of the
         # features should be deleted (thus the count should be the same).
         self.assertTrue(client.login(username='user', password='user'))
-        url = reverse('delete_grid_package', kwargs={'id': '1'})
+        url = reverse('delete_grid_hack', kwargs={'id': '1'})
         response = client.get(url)
-        self.assertEqual(count, GridPackage.objects.count())
+        self.assertEqual(count, GridHack.objects.count())
         
         # Once we log in with the appropriate user, the request should delete
         # the given feature, reducing the count by one.
         self.assertTrue(client.login(username='cleaner', password='cleaner'))
         response = client.get(url)
-        self.assertEqual(count - 1, GridPackage.objects.count())
+        self.assertEqual(count - 1, GridHack.objects.count())
 
     def test_latest_grids_view(self):
         client = Client()
@@ -155,14 +155,14 @@ class RegressionGridTest(TestCase):
         """
         client = Client()
 
-        # Delete the element for the sepcified feature and package.        
-        element, created = Element.objects.get_or_create(feature=1, grid_package=1)
+        # Delete the element for the sepcified feature and hack.        
+        element, created = Element.objects.get_or_create(feature=1, grid_hack=1)
         element.delete()
         
         # Log in the test user and attempt to edit the element.
         self.assertTrue(client.login(username='user', password='user'))
 
-        url = reverse('edit_element', kwargs={'feature_id': '1', 'package_id': '1'})
+        url = reverse('edit_element', kwargs={'feature_id': '1', 'hack_id': '1'})
         response = client.get(url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'grid/edit_element.html')
