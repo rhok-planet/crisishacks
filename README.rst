@@ -14,7 +14,7 @@ A Django package is anything that is involved in the Django ecosphere that can b
 The Site
 --------
 
-The site is live and functional at http://www.djangopackages.com.  
+The site is live and functional at http://www.crisishacks.com.  
 
 Grids!
 ~~~~~~
@@ -41,17 +41,17 @@ Installation
 .. parsed-literal::
 
     cd <installation-directory>
-    virtualenv env-djangopackages
-    source env-djangopackages/bin/activate
-    git clone git://github.com/pydanny/djangopackages.git djangopackages
-    cd djangopackages
+    virtualenv env-crisishacks
+    source env-crisishacks/bin/activate
+    git clone git://github.com/pydanny/crisishacks.git djangopackages
+    cd crisishacks
     pip install -r requirements/project.txt
         
 In production add symlinks to the pinax and uni_form media directories::
 
     cd media
-    ln -s ../../env-djangopackages/lib/python2.6/site-packages/pinax/media/default/pinax/ pinax
-    ln -s ../../env-djangopackages/lib/python2.6/site-packages/uni_form/media/uni_form/ uni_form
+    ln -s ../../env-crisishacks/lib/python2.6/site-packages/pinax/media/default/pinax/ pinax
+    ln -s ../../env-crisishacks/lib/python2.6/site-packages/uni_form/media/uni_form/ uni_form
     
 Starting the development server
 ===============================
