@@ -43,7 +43,7 @@ Installation
     cd <installation-directory>
     virtualenv env-crisishacks
     source env-crisishacks/bin/activate
-    git clone git://github.com/pydanny/crisishacks.git djangopackages
+    git clone git://github.com/rhok-planet/djangopackages.git crisishacks
     cd crisishacks
     pip install -r requirements/project.txt
         
