@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Django settings for basic pinax project.
 
-import logging 
+import logging
 import os.path
 import posixpath
 import pinax
@@ -101,7 +101,7 @@ MIDDLEWARE_CLASSES = [
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
-    "reversion.middleware.RevisionMiddleware",    
+    "reversion.middleware.RevisionMiddleware",
     "django_openid.consumer.SessionConsumer",
     "django.contrib.messages.middleware.MessageMiddleware",
     "pinax.apps.account.middleware.LocaleMiddleware",
@@ -125,13 +125,13 @@ TEMPLATE_CONTEXT_PROCESSORS = [
     "django.core.context_processors.media",
     "django.core.context_processors.request",
     "django.contrib.messages.context_processors.messages",
-    
+
     "staticfiles.context_processors.static_url",
-    
+
     "pinax.core.context_processors.pinax_settings",
-    
+
     "pinax.apps.account.context_processors.account",
-    
+
     "notification.context_processors.notification",
     "announcements.context_processors.site_wide_announcements",
 
@@ -150,9 +150,9 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.humanize",
     "django.contrib.flatpages",
-    
+
     "pinax.templatetags",
-    
+
     # external
     "notification", # must be first
     "staticfiles",
@@ -170,12 +170,12 @@ INSTALLED_APPS = [
 	"south",
 	"tastypie",
 	"reversion",
-    
+
     # Pinax
     "pinax.apps.account",
     "pinax.apps.signup_codes",
     "pinax.apps.analytics",
-    
+
     # project
     "about",
     "grid",
@@ -233,7 +233,7 @@ DEBUG_TOOLBAR_CONFIG = {
 
 logging.basicConfig(
         level=logging.DEBUG,
-        format='%(asctime)s %(levelname)s "%(message)s" in %(funcName)s() line %(lineno)d in %(pathname)s', 
+        format='%(asctime)s %(levelname)s "%(message)s" in %(funcName)s() line %(lineno)d in %(pathname)s',
         filename='main.log',
         filemode='a',
 )

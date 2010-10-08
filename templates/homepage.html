@@ -19,33 +19,33 @@
             <form action="{% url search %}">
                 <input id="id_q_p" type="text" name="q" maxlength="100" value="search" autocomplete="off" />
                 <input id="hidden-submit" type="submit" value="go" />
-            </form>         
+            </form>
         </div>
 
         <div>
             <h1><a class="xlarge awesome green" href="{% url add_hack %}">add hack »</a></h1>
-        </div>        
+        </div>
         <div class="home-rightcolbox">
             <h1>Django Hack of the Day</h1>
             {% cache 300 "homepage.dpotw" %}
-                {% for hack in dpotw %}            
+                {% for hack in dpotw %}
                     <h2><a href="{% url hack hack.hack.slug %}">{{ hack.hack.title }}</a></h2>
                     <p>{{ hack.hack.repo_description }}</p>
                 {% endfor %}
             {% endcache %}
             <p><a href="{% url add_hack %}">Add your own hack, or someone else's!</a></p>
-        </div>   
+        </div>
 
         <div class="home-rightcolbox">
             <h1>Grid of the Day</h1>
             {% cache 300 "homepage.gotw" %}
-                {% for grid in gotw %}            
+                {% for grid in gotw %}
                     <h2><a href="{% url grid grid.grid.slug %}">{{ grid.grid.title }}</a></h2>
                     <p>{{ grid.grid.description }}</p>
-                <p><a href="{% url add_grid %}">Add a new grid!</a></p>                
+                <p><a href="{% url add_grid %}">Add a new grid!</a></p>
                 {% endfor %}
             {% endcache %}
-        </div>  
+        </div>
         <div class="home-rightcolbox">
             <h1>We need your help</h1>
             <p>Help us populate our database by adding any Django hack, whether it's yours or someone else's.</p>
@@ -54,22 +54,16 @@
             <p>Or add a grid comparing the features of 2 or more similar hacks.</p>
             <p><a class="large awesome blue" href="{% url add_grid %}">add grid »</a></p>
         </div>
-    </div>        
-     
+    </div>
+
      {% for category in categories %}
         <h2><a href="{% url category category.slug %}">{{ category.title_plural }}</a> ( {{ category.count }} )</h2>
         <p>{{ category.description }}</p>
         <table id="home-hacks">
             <tr>
                 <th># Using This</th>
-                {% if category.show_pypi %}
-                    <th class="tiny-column">PyPi Downloads</th>
-                {% endif %}
                 <th>Name</th>
                 <th>Commits</th>
-                {% if category.show_pypi %}                
-                    <th>Version</th>
-                {% endif %}                    
                 <th><img src="{{ STATIC_URL }}img/eye_20x20_clear.png" /></th>
                 <th><img src="{{ STATIC_URL }}img/fork_20x20_clear.png" /></th>
             </tr>
@@ -87,44 +81,38 @@
                             {% endif %}
                         </span>
                     </td>
-                    {% if category.show_pypi %}                    
-                        <td>{{ hack.pypi_downloads }}</td>
-                    {% endif %}
                     <td><a href="{% url hack hack.slug %}">{{ hack.title }}</a></td>
-                    {% cache 86400 hack.commitchart hack %}                
+                    {% cache 86400 hack.commitchart hack %}
                         <td><img id="hack-githubcommits" src="http://chart.apis.google.com/chart?cht=bvg&chs=105x20&chd=t:{{hack|commits_over_52}}&chco=666666&chbh=1,1,1&chds=0,20" /></td>
-                    {% endcache %}      
-                    {% if category.show_pypi %}                                                  
-                        <td>{{ hack.pypi_version|default:"n/a"|slice:":12" }}</td>
-                    {% endif %}
+                    {% endcache %}
                     <td>{{ hack.repo_watchers|default:"n/a" }}</td>
                     <td>{{ hack.repo_forks|default:"n/a" }}</td>
-                </tr>    
-            {% endfor %}        
-         </table>    
-         <p><a href="{% url category category.slug %}">more {{ category.title_plural|lower }}...</a></p>    
+                </tr>
+            {% endfor %}
+         </table>
+         <p><a href="{% url category category.slug %}">more {{ category.title_plural|lower }}...</a></p>
      {% endfor %}
- 
-    
+
+
 
 {% endblock %}
 
 {% block extra_body %}
 <script type="text/javascript">
-    $(function() {          
+    $(function() {
         $('input#id_q_p').click(function() {
             $("input#id_q_p").val('');
-        });                        
-    });    
+        });
+    });
 
     $('#id_q_p').autocomplete({
       source: '{% url search_hacks_autocomplete %}',
       minLength: 1,
-      open: function(event, ui) { 
-        ac_top = $('.ui-autocomplete').css('top'); 
-        $('.ui-autocomplete').css({'width': '250px', 'top': ac_top + 10 }); 
+      open: function(event, ui) {
+        ac_top = $('.ui-autocomplete').css('top');
+        $('.ui-autocomplete').css({'width': '250px', 'top': ac_top + 10 });
       }
     });
-    
-</script>      
-{% endblock %}      
+
+</script>
+{% endblock %}

@@ -21,14 +21,14 @@ def repos_for_js():
     repos = {}
     for repo in Repo.objects.all():
         repos[repo.url] = repo.id
-    return simplejson.dumps(repos)  
+    return simplejson.dumps(repos)
 
 @login_required
 def add_hack(request, template_name="hack/hack_form.html"):
-    
+
     new_hack = Hack()
     form = HackForm(request.POST or None, instance=new_hack)
-    
+
     if form.is_valid():
         new_hack = form.save()
         new_hack.created_by = request.user
@@ -36,7 +36,7 @@ def add_hack(request, template_name="hack/hack_form.html"):
         new_hack.save()
         new_hack.fetch_metadata()
         return HttpResponseRedirect(reverse("hack", kwargs={"slug":new_hack.slug}))
-    
+
     return render_to_response(template_name, {
         "form": form,
         "repos": repos_for_js(),
@@ -46,17 +46,17 @@ def add_hack(request, template_name="hack/hack_form.html"):
 
 @login_required
 def edit_hack(request, slug, template_name="hack/hack_form.html"):
-    
+
     hack = get_object_or_404(Hack, slug=slug)
     form = HackForm(request.POST or None, instance=hack)
-    
+
     if form.is_valid():
         modified_hack = form.save()
         modified_hack.last_modified_by = request.user
         modified_hack.save()
-        
+
         return HttpResponseRedirect(reverse("hack", kwargs={"slug": modified_hack.slug}))
-    
+
     return render_to_response(template_name, {
         "form": form,
         "hack": hack,
@@ -67,20 +67,20 @@ def edit_hack(request, slug, template_name="hack/hack_form.html"):
 
 @login_required
 def update_hack(request, slug):
-    
+
     hack = get_object_or_404(Hack, slug=slug)
     hack.fetch_metadata()
-        
+
     return HttpResponseRedirect(reverse("hack", kwargs={"slug": hack.slug}))
 
 
 
 def add_example(request, slug, template_name="hack/add_example.html"):
-    
+
     hack = get_object_or_404(Hack, slug=slug)
     new_hack_example = HackExample()
     form = HackExampleForm(request.POST or None, instance=new_hack_example)
-    
+
     if form.is_valid():
         hack_example = HackExample(hack=hack,
                 title=request.POST["title"],
@@ -88,7 +88,7 @@ def add_example(request, slug, template_name="hack/add_example.html"):
         hack_example.save()
         return HttpResponseRedirect(reverse("hack", kwargs={"slug":hack_example.hack.slug}))
 
-    
+
     return render_to_response(template_name, {
         "form": form,
         "hack":hack
@@ -97,14 +97,14 @@ def add_example(request, slug, template_name="hack/add_example.html"):
 
 
 def edit_example(request, slug, id, template_name="hack/edit_example.html"):
-    
+
     hack_example = get_object_or_404(HackExample, id=id)
     form = HackExampleForm(request.POST or None, instance=hack_example)
-    
+
     if form.is_valid():
         form.save()
         return HttpResponseRedirect(reverse("hack", kwargs={"slug": hack_example.hack.slug}))
-    
+
     return render_to_response(template_name, {
         "form": form,
         "hack":hack_example.hack
@@ -120,15 +120,15 @@ def hack_autocomplete(request):
     q = request.GET.get("q", "")
     if q:
         titles = (x.title for x in Hack.objects.filter(title__istartswith=q))
-    
+
     response = HttpResponse("\n".join(titles))
-    
+
     setattr(response, "djangologging.suppress_output", True)
     return response
 
 def category(request, slug, template_name="hack/category.html"):
     category = get_object_or_404(Category, slug=slug)
-    hacks = category.hack_set.annotate(usage_count=Count("usage")).order_by("-pypi_downloads", "-repo_watchers", "title")
+    hacks = category.hack_set.annotate(usage_count=Count("usage")).order_by("-repo_watchers", "title")
     return render_to_response(template_name, {
         "category": category,
         "hacks": hacks,
@@ -166,9 +166,9 @@ def usage(request, slug, action):
             response['redirect'] = url
             return HttpResponse(simplejson.dumps(response))
         return HttpResponseRedirect(url)
-    
+
     hack = get_object_or_404(Hack, slug=slug)
-    
+
     # Update the current user's usage of the given hack as specified by the
     # request.
     if hack.usage.filter(username=request.user.username):
@@ -183,12 +183,12 @@ def usage(request, slug, action):
             success = True
             template_name = 'hack/remove_usage_button.html'
             change = 1
-    
+
     # Invalidate the cache of this users's used_hacks_list.
     if success:
         cache_key = "sitewide:used_hacks_list:%s" % request.user.pk
         cache.delete(cache_key)
-    
+
     # Return an ajax-appropriate response if necessary
     if request.is_ajax():
         response = {'success': success}
@@ -199,12 +199,12 @@ def usage(request, slug, action):
                 {"hack": hack},
             )
         return HttpResponse(simplejson.dumps(response))
-    
+
     # Intelligently determine the URL to redirect the user to based on the
     # available information.
     next = request.GET.get('next') or request.META.get("HTTP_REFERER") or reverse("hack", kwargs={"slug": hack.slug})
     return HttpResponseRedirect(next)
-    
+
 def packaginate(request):
     """ Special project method - DO NOT TOUCH!!! """
 
@@ -215,4 +215,4 @@ def packaginate(request):
             url = hack.get_absolute_url(),
             description=hack.repo_description
         )
-    return HttpResponse(simplejson.dumps(response))    
+    return HttpResponse(simplejson.dumps(response))

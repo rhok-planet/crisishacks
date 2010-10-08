@@ -45,9 +45,6 @@ class Migration(SchemaMigration):
             ('repo_watchers', self.gf('django.db.models.fields.IntegerField')(default=0)),
             ('repo_forks', self.gf('django.db.models.fields.IntegerField')(default=0)),
             ('repo_commits', self.gf('django.db.models.fields.IntegerField')(default=0)),
-            ('pypi_url', self.gf('django.db.models.fields.URLField')(default='', max_length=200, blank=True)),
-            ('pypi_version', self.gf('django.db.models.fields.CharField')(max_length='20', blank=True)),
-            ('pypi_downloads', self.gf('django.db.models.fields.IntegerField')(default=0)),
             ('participants', self.gf('django.db.models.fields.TextField')(blank=True)),
         ))
         db.send_create_signal('hack', ['Hack'])
@@ -129,9 +126,6 @@ class Migration(SchemaMigration):
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'modified': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now', 'blank': 'True'}),
             'participants': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
-            'pypi_downloads': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
-            'pypi_url': ('django.db.models.fields.URLField', [], {'default': "''", 'max_length': '200', 'blank': 'True'}),
-            'pypi_version': ('django.db.models.fields.CharField', [], {'max_length': "'20'", 'blank': 'True'}),
             'related_hacks': ('django.db.models.fields.related.ManyToManyField', [], {'related_name': "'related_hacks_rel_+'", 'blank': 'True', 'to': "orm['hack.Hack']"}),
             'repo': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['hack.Repo']", 'null': 'True'}),
             'repo_commits': ('django.db.models.fields.IntegerField', [], {'default': '0'}),

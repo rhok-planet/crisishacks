@@ -8,14 +8,10 @@ class Migration(SchemaMigration):
 
     def forwards(self, orm):
         
-        # Adding field 'Category.show_pypi'
-        db.add_column('hack_category', 'show_pypi', self.gf('django.db.models.fields.BooleanField')(default=True), keep_default=False)
 
 
     def backwards(self, orm):
         
-        # Deleting field 'Category.show_pypi'
-        db.delete_column('hack_category', 'show_pypi')
 
 
     models = {
@@ -61,7 +57,6 @@ class Migration(SchemaMigration):
             'description': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'modified': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now', 'blank': 'True'}),
-            'show_pypi': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
             'slug': ('django.db.models.fields.SlugField', [], {'max_length': '50', 'db_index': 'True'}),
             'title': ('django.db.models.fields.CharField', [], {'max_length': "'50'"}),
             'title_plural': ('django.db.models.fields.CharField', [], {'max_length': "'50'", 'blank': 'True'})
@@ -83,9 +78,6 @@ class Migration(SchemaMigration):
             'last_modified_by': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'modifier'", 'null': 'True', 'to': "orm['auth.User']"}),
             'modified': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now', 'blank': 'True'}),
             'participants': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
-            'pypi_downloads': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
-            'pypi_url': ('django.db.models.fields.URLField', [], {'default': "''", 'max_length': '200', 'blank': 'True'}),
-            'pypi_version': ('django.db.models.fields.CharField', [], {'max_length': "'20'", 'blank': 'True'}),
             'related_hacks': ('django.db.models.fields.related.ManyToManyField', [], {'related_name': "'related_hacks_rel_+'", 'blank': 'True', 'to': "orm['hack.Hack']"}),
             'repo': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['hack.Repo']", 'null': 'True'}),
             'repo_commits': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
