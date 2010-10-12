@@ -107,8 +107,8 @@ h2 { font-size: 153.9%; }
 
 
 /* Style all tables the same way throughout the site  */
-th { font-size: 11px; color: #FFF; border: 1px solid #C1DAD7; letter-spacing: 2px; text-transform: uppercase; text-align: left; padding: 6px 6px 6px 12px; background: #577C9D; }
-td { border: 1px solid #C1DAD7; background: #fff; padding: 6px 6px 6px 12px; color: #FFF; }
+th { font-size: 11px; color: #AAA; border: 1px solid #C1DAD7; letter-spacing: 2px; text-transform: uppercase; text-align: left; padding: 6px 6px 6px 12px; background: #577C9D; }
+td { border: 1px solid #C1DAD7; background: #fff; padding: 6px 6px 6px 12px; color: #AAA; }
 .clickable { background: #FFFAE3; }
 
 /* Search */
