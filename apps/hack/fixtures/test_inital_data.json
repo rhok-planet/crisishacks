@@ -1,0 +1,239 @@
+[
+    {
+        "pk": 1, 
+        "model": "hack.category", 
+        "fields": {
+            "description": "Small components used to build projects.", 
+            "title": "App", 
+            "created": "2010-08-14 19:47:52", 
+            "modified": "2010-08-14 19:47:52", 
+            "title_plural": "", 
+            "slug": "apps"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "hack.category", 
+        "fields": {
+            "description": "Large efforts that combine many modules or apps. Examples include Ushahidi and GeoNode. Most big projects fall into this category.", 
+            "title": "Framework", 
+            "created": "2010-08-14 19:48:52", 
+            "modified": "2010-08-14 19:48:52", 
+            "title_plural": "", 
+            "slug": "frameworks"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "hack.category", 
+        "fields": {
+            "description": "This is for individual projects such as I'm OK, haiticrisismap.org, and others.", 
+            "title": "Project", 
+            "created": "2010-08-14 19:49:38", 
+            "modified": "2010-08-14 19:49:38", 
+            "title_plural": "", 
+            "slug": "projects"
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "hack.repo", 
+        "fields": {
+            "user_regex": "", 
+            "description": "", 
+            "title": "Github", 
+            "url": "http://github.com", 
+            "handler": "hack.handlers.unsupported", 
+            "created": "2010-08-14 19:50:11", 
+            "modified": "2010-08-15 09:29:00", 
+            "repo_regex": "", 
+            "is_supported": true, 
+            "slug_regex": "", 
+            "is_other": false
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "hack.repo", 
+        "fields": {
+            "user_regex": "", 
+            "description": "", 
+            "title": "BitBucket", 
+            "url": "http://bitbucket.com", 
+            "handler": "hack.handlers.unsupported", 
+            "created": "2010-08-15 09:29:10", 
+            "modified": "2010-08-15 09:29:10", 
+            "repo_regex": "", 
+            "is_supported": false, 
+            "slug_regex": "", 
+            "is_other": false
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "hack.repo", 
+        "fields": {
+            "user_regex": "", 
+            "description": "", 
+            "title": "Google Code", 
+            "url": "http://code.google.com/", 
+            "handler": "hack.handlers.unsupported", 
+            "created": "2010-08-15 09:29:24", 
+            "modified": "2010-08-15 09:29:25", 
+            "repo_regex": "", 
+            "is_supported": false, 
+            "slug_regex": "", 
+            "is_other": false
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "hack.hack", 
+        "fields": {
+            "category": 2, 
+            "related_hacks": [], 
+            "title": "GeoNode", 
+            "created": "2010-10-12 14:38:49", 
+            "modified": "2010-10-12 14:39:04", 
+            "created_by": 5, 
+            "repo_watchers": 0, 
+            "repo": 1, 
+            "participants": "", 
+            "last_modified_by": 5, 
+            "repo_url": "http://github.com/geonode/GeoNode", 
+            "usage": [
+                5
+            ], 
+            "repo_commits": 0, 
+            "repo_forks": 0, 
+            "slug": "geonode", 
+            "repo_description": ""
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "hack.hack", 
+        "fields": {
+            "category": 3, 
+            "related_hacks": [], 
+            "title": "I'm OK", 
+            "created": "2010-10-12 14:37:28", 
+            "modified": "2010-10-12 14:37:29", 
+            "created_by": 5, 
+            "repo_watchers": 0, 
+            "repo": 1, 
+            "participants": "", 
+            "last_modified_by": 5, 
+            "repo_url": "http://github.com/jeztek/imok", 
+            "usage": [], 
+            "repo_commits": 0, 
+            "repo_forks": 0, 
+            "slug": "imok", 
+            "repo_description": ""
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "hack.hack", 
+        "fields": {
+            "category": 1, 
+            "related_hacks": [], 
+            "title": "Tweak the tweet", 
+            "created": "2010-10-12 14:45:52", 
+            "modified": "2010-10-12 14:45:53", 
+            "created_by": 5, 
+            "repo_watchers": 0, 
+            "repo": 1, 
+            "participants": "", 
+            "last_modified_by": 5, 
+            "repo_url": "http://github.com/unthinkingly/tweak-the-tweet", 
+            "usage": [], 
+            "repo_commits": 0, 
+            "repo_forks": 0, 
+            "slug": "tweak-the-tweet", 
+            "repo_description": ""
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "hack.hack", 
+        "fields": {
+            "category": 2, 
+            "related_hacks": [], 
+            "title": "Ushahidi", 
+            "created": "2010-10-12 14:41:35", 
+            "modified": "2010-10-12 14:41:37", 
+            "created_by": 5, 
+            "repo_watchers": 0, 
+            "repo": 1, 
+            "participants": "", 
+            "last_modified_by": 5, 
+            "repo_url": "http://github.com/ushahidi/Ushahidi_Web", 
+            "usage": [], 
+            "repo_commits": 0, 
+            "repo_forks": 0, 
+            "slug": "ushahidi", 
+            "repo_description": ""
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "hack.hackexample", 
+        "fields": {
+            "title": "Haiti", 
+            "url": "http://haiti.ushahidi.com/", 
+            "created": "2010-10-12 14:41:35", 
+            "modified": "2010-10-12 14:41:37", 
+            "hack": 3, 
+            "active": true
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "hack.hackexample", 
+        "fields": {
+            "title": "Haiti Data", 
+            "url": "http://geonode.haitidata.org", 
+            "created": "2010-10-12 14:38:49", 
+            "modified": "2010-10-12 14:39:04", 
+            "hack": 2, 
+            "active": true
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "hack.hackexample", 
+        "fields": {
+            "title": "I'm OK", 
+            "url": "http://imok.jeztek.com", 
+            "created": "2010-10-12 14:37:28", 
+            "modified": "2010-10-12 14:37:29", 
+            "hack": 1, 
+            "active": true
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "hack.hackexample", 
+        "fields": {
+            "title": "Official Demo", 
+            "url": "http://demo.geonode.org", 
+            "created": "2010-10-12 14:38:49", 
+            "modified": "2010-10-12 14:39:04", 
+            "hack": 2, 
+            "active": true
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "hack.hackexample", 
+        "fields": {
+            "title": "Pakistan", 
+            "url": "http://pakistan.ushahidi.com", 
+            "created": "2010-10-12 14:41:35", 
+            "modified": "2010-10-12 14:41:37", 
+            "hack": 3, 
+            "active": true
+        }
+    }
+]
