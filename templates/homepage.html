@@ -26,7 +26,7 @@
             <h1><a class="xlarge awesome green" href="{% url add_hack %}">add hack »</a></h1>
         </div>
         <div class="home-rightcolbox">
-            <h1>Django Hack of the Day</h1>
+            <h1>Crisis Hack of the Day</h1>
             {% cache 300 "homepage.dpotw" %}
                 {% for hack in dpotw %}
                     <h2><a href="{% url hack hack.hack.slug %}">{{ hack.hack.title }}</a></h2>
@@ -48,7 +48,7 @@
         </div>
         <div class="home-rightcolbox">
             <h1>We need your help</h1>
-            <p>Help us populate our database by adding any Django hack, whether it's yours or someone else's.</p>
+            <p>Help us populate our database by adding any Crisis hack, whether it's yours or someone else's.</p>
             <p><a class="large awesome green" href="{% url add_hack %}">add hack »</a></p>
 
             <p>Or add a grid comparing the features of 2 or more similar hacks.</p>
