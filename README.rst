@@ -60,6 +60,11 @@ Change your local_settings.py file to point to prod.db then do::
 
     python manage.py runserver
 
+Loading sample data
+===================
+
+    python manage.py loaddata test_initial_data
+
 Updating Packages
 =================
 
