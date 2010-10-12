@@ -1,7 +1,21 @@
 /* General */
 
-body { background:url("/site_media/static/img/bg.gif"); font-family: "Helvetica Neue", Arial, sans-serif; font-size: 10pt; margin: 0;}
-#body { width: 960px; padding-left: 30px; background:#fff;}
+body { background:url("/site_media/static/img/bg.gif"); font-family: "Helvetica Neue", Arial, sans-serif; font-size: 10pt; margin: 0;
+
+ margin: 0 auto;
+ text-align:center;
+ max-width: 990px; height: 100%;
+ width:expression(document.body.clientWidth > 900? "900px" : "auto");
+
+
+}
+#body { background:#fff;
+ margin: 0 auto;
+ text-align:center;
+ max-width: 960px; height: 100%;
+ width:expression(document.body.clientWidth > 900? "900px" : "auto");
+
+}
 
 table, form, fieldset { border: 0; }
 
@@ -110,3 +124,4 @@ ul#messages li {background-color: #FFB; border: 1px solid #EE0; list-style-type:
 
 td.usage-container {width: 8em}
 td.usage-container .usage-button {float: right}
+
