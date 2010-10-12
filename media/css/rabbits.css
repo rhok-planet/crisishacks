@@ -1,7 +1,7 @@
 /* General */
 
-body { background: #FFF; font-family: "Helvetica Neue", Arial, sans-serif; font-size: 10pt; margin: 0;}
-#body { width: 960px; padding-left: 30px; }
+body { background:url("/site_media/static/img/bg.gif"); font-family: "Helvetica Neue", Arial, sans-serif; font-size: 10pt; margin: 0;}
+#body { width: 960px; padding-left: 30px; background:#fff;}
 
 table, form, fieldset { border: 0; }
 
@@ -34,8 +34,8 @@ h2 { font-size: 153.9%; }
 .xlarge.awesome, .xlarge.awesome:visited { font-size: 36px; font-weight: 700; padding: 8px 14px 9px; }
 .green.awesome, .green.awesome:visited { background-color: #EE212A; }
 .green.awesome:hover { background-color: #749a02; }
-.blue.awesome, .blue.awesome:visited { background-color: #2daebf; }
-.blue.awesome:hover { background-color: #007d9a; }
+.blue.awesome, .blue.awesome:visited { background-color: #2F597F; }
+.blue.awesome:hover { background-color: #47618F; }
 .red.awesome, .red.awesome:visited { background-color: #e33100; }
 .red.awesome:hover { background-color: #872300; }
 .magenta.awesome, .magenta.awesome:visited { background-color: #a9014b; }
@@ -61,7 +61,7 @@ h2 { font-size: 153.9%; }
 /* This overrides styles from base.css */
 #tabhead { border: 0; position: relative; }
 
-#tabhead .logo { height: 40px; padding: 6px 0 0 10px; font-weight: 700; background-color: #FFF; }
+#tabhead .logo { height: 40px; padding: 6px 0 0 10px; font-weight: 700; }
 #tabhead .logo h1 { line-height: 80%; font-size: 38px; display: inline; padding-right: 26px; }
 #tabhead .logo h2 { font-size: 17px; display: inline; }
 #tabhead .logo a { color: #121212; text-decoration: none; }
@@ -82,7 +82,7 @@ h2 { font-size: 153.9%; }
 /* Nav bar - overrides styles from tabs.css */
 #cardboard-boxes { float: left; margin: 20px 20px 0 12px; }
 #nav-help { margin: 10px 0 0 20px; } /* the top left help btn */
-#left_tabs { position: relative; clear: both; left: 0px; background: #1C70B7; bottom: 0; min-height: 80px; padding: 1px; }
+#left_tabs { position: relative; clear: both; left: 0px; background: #577C9D; bottom: 0; min-height: 80px; padding: 1px; }
 #multi-col-nav { -moz-column-count: 5; -webkit-column-count: 5; }
 #multi-col-nav li { list-style-type: none; }
 #multi-col-nav li a, #multi-col-nav li a:visited { color: #FFFFDD; font: 11px Helvetica, Arial, sans-serif; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; }
@@ -93,7 +93,7 @@ h2 { font-size: 153.9%; }
 
 
 /* Style all tables the same way throughout the site  */
-th { font-size: 11px; color: #FFF; border: 1px solid #C1DAD7; letter-spacing: 2px; text-transform: uppercase; text-align: left; padding: 6px 6px 6px 12px; background: #1C70B7; }
+th { font-size: 11px; color: #FFF; border: 1px solid #C1DAD7; letter-spacing: 2px; text-transform: uppercase; text-align: left; padding: 6px 6px 6px 12px; background: #577C9D; }
 td { border: 1px solid #C1DAD7; background: #fff; padding: 6px 6px 6px 12px; color: #FFF; }
 .clickable { background: #FFFAE3; }
 
