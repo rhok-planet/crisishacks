@@ -1,220 +1,68 @@
-[ { "fields" : { "created" : "2010-01-01 12:00:00",
-        "description" : "A grid for testing.",
-        "is_locked" : false,
-        "modified" : "2010-01-01 12:00:00",
-        "slug" : "testing",
-        "title" : "Testing"
-      },
-    "model" : "grid.grid",
-    "pk" : 1
-  },
-  { "fields" : { "created" : "2010-01-01 12:00:00",
-        "grid" : 1,
-        "modified" : "2010-01-01 12:00:00",
-        "hack" : 1
-      },
-    "model" : "grid.gridhack",
-    "pk" : 1
-  },
-  { "fields" : { "created" : "2010-01-01 12:00:00",
-        "grid" : 1,
-        "modified" : "2010-01-01 12:00:00",
-        "hack" : 2
-      },
-    "model" : "grid.gridhack",
-    "pk" : 2
-  },
-  { "fields" : { "created" : "2010-01-01 12:00:00",
-        "grid" : 1,
-        "modified" : "2010-01-01 12:00:00",
-        "hack" : 3
-      },
-    "model" : "grid.gridhack",
-    "pk" : 3
-  },
-  { "fields" : { "created" : "2010-01-01 12:00:00",
-        "description" : "Does this hack come with tests?",
-        "grid" : 1,
-        "modified" : "2010-01-01 12:00:00",
-        "title" : "Has tests?"
-      },
-    "model" : "grid.feature",
-    "pk" : 1
-  },
-  { "fields" : { "created" : "2010-01-01 12:00:00",
-        "feature" : 1,
-        "grid_hack" : 1,
-        "modified" : "2010-01-01 12:00:00",
-        "text" : "Yes"
-      },
-    "model" : "grid.element",
-    "pk" : 1
-  },
-  { "fields" : { "created" : "2010-01-01 12:00:00",
-        "description" : "Small components used to build projects.",
-        "modified" : "2010-01-01 12:00:00",
-        "slug" : "apps",
-        "title" : "App"
-      },
-    "model" : "hack.category",
-    "pk" : 1
-  },
-  { "fields" : { "created" : "2010-01-01 12:00:00",
-        "description" : "",
-        "is_supported" : true,
-        "modified" : "2010-01-01 12:00:00",
-        "title" : "Github",
-        "url" : "http://github.com"
-      },
-    "model" : "hack.repo",
-    "pk" : 1
-  },
-  { "fields" : { "created" : "2010-01-01 12:00:00",
-        "description" : "",
-        "is_supported" : true,
-        "modified" : "2010-01-01 12:00:00",
-        "title" : "BitBucket",
-        "url" : "http://bitbucket.com"
-      },
-    "model" : "hack.repo",
-    "pk" : 2
-  },
-  { "fields" : { "created" : "2010-01-01 12:00:00",
-        "description" : "",
-        "is_supported" : false,
-        "modified" : "2010-01-01 12:00:00",
-        "title" : "Google Code",
-        "url" : "http://code.google.com/"
-      },
-    "model" : "hack.repo",
-    "pk" : 3
-  },
-  { "fields" : { "category" : 1,
-        "created" : "2010-01-01 12:00:00",
-        "modified" : "2010-01-01 12:00:00",
-        "participants" : "malcomt,jacobian",
-        "related_hacks" : [  ],
-        "repo" : 1,
-        "repo_commits" : 0,
-        "repo_description" : "Increase your testing ability with this steroid free supplement.",
-        "repo_forks" : 0,
-        "repo_url" : "",
-        "repo_watchers" : 0,
-        "slug" : "testability",
-        "title" : "Testability"
-      },
-    "model" : "hack.hack",
-    "pk" : 1
-  },
-  { "fields" : { "category" : 1,
-        "created" : "2010-01-01 12:00:00",
-        "modified" : "2010-01-01 12:00:00",
-        "participants" : "thetestman",
-        "related_hacks" : [  ],
-        "repo" : 1,
-        "repo_commits" : 0,
-        "repo_description" : "Test everything under the sun with one command!",
-        "repo_forks" : 0,
-        "repo_url" : "",
-        "repo_watchers" : 0,
-        "slug" : "supertester",
-        "title" : "Supertester"
-      },
-    "model" : "hack.hack",
-    "pk" : 1
-  },
-  { "fields" : { "category" : 1,
-        "created" : "2010-01-01 12:00:00",
-        "modified" : "2010-01-01 12:00:00",
-        "participants" : "jlivni",
-        "related_hacks" : [  ],
-        "repo" : 1,
-        "repo_commits" : 0,
-        "repo_description" : "Make testing as painless as waxing your legs.",
-        "repo_forks" : 0,
-        "repo_url" : "",
-        "repo_watchers" : 0,
-        "slug" : "serious-testing",
-        "title" : "Serious Testing"
-      },
-    "model" : "hack.hack",
-    "pk" : 1
-  },
-  { "fields" : { "name" : "Moderators",
-        "permissions" : [ [ "delete_gridhack",
-              "grid",
-              "gridhack"
-            ],
-            [ "delete_feature",
-              "grid",
-              "feature"
-            ]
-          ]
-      },
-    "model" : "auth.group",
-    "pk" : 1
-  },
-  { "fields" : { "date_joined" : "2010-01-01 12:00:00",
-        "email" : "",
-        "first_name" : "",
-        "groups" : [  ],
-        "is_active" : true,
-        "is_staff" : false,
-        "is_superuser" : false,
-        "last_login" : "2010-01-01 12:00:00",
-        "last_name" : "",
-        "password" : "sha1$644c9$347f3dd85fb609a5745ebe33d0791929bf08f22e",
-        "user_permissions" : [  ],
-        "username" : "user"
-      },
-    "model" : "auth.user",
-    "pk" : 1
-  },
-  { "fields" : { "date_joined" : "2010-01-01 12:00:00",
-        "email" : "",
-        "first_name" : "",
-        "groups" : [ 1 ],
-        "is_active" : true,
-        "is_staff" : false,
-        "is_superuser" : false,
-        "last_login" : "2010-01-01 12:00:00",
-        "last_name" : "",
-        "password" : "sha1$e6fe2$78b744e21cddb39117997709218f4c6db4e91894",
-        "user_permissions" : [  ],
-        "username" : "cleaner"
-      },
-    "model" : "auth.user",
-    "pk" : 2
-  },
-  { "fields" : { "date_joined" : "2010-01-01 12:00:00",
-        "email" : "",
-        "first_name" : "",
-        "groups" : [  ],
-        "is_active" : true,
-        "is_staff" : true,
-        "is_superuser" : false,
-        "last_login" : "2010-01-01 12:00:00",
-        "last_name" : "",
-        "password" : "sha1$8894d$c4814980edd6778f0ab1632c4270673c0fd40efe",
-        "user_permissions" : [  ],
-        "username" : "staff"
-      },
-    "model" : "auth.user",
-    "pk" : 3
-  },
-  { "fields" : { "date_joined" : "2010-01-01 12:00:00",
-        "email" : "",
-        "first_name" : "",
-        "groups" : [  ],
-        "is_active" : true,
-        "is_staff" : true,
-        "is_superuser" : true,
-        "last_login" : "2010-01-01 12:00:00",
-        "last_name" : "",
-        "password" : "sha1$52c7f$59b4f64ffca593e6abd23f90fd1f95cf71c367a4",
-        "user_permissions" : [  ],
-        "username" : "admin"
-      },
-    "model" : "auth.user",
-    "pk" : 4
-  }]
+[
+    {
+        "pk": 2, 
+        "model": "grid.grid", 
+        "fields": {
+            "description": "First Random Hacks of Kindness", 
+            "title": "RHoK #0", 
+            "is_locked": false, 
+            "created": "2010-10-12 14:57:38", 
+            "modified": "2010-10-12 15:01:20", 
+            "slug": "rhok0"
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "grid.grid", 
+        "fields": {
+            "description": "First Random Hacks of Kindness", 
+            "title": "RhoK #1", 
+            "is_locked": false, 
+            "created": "2010-10-12 15:02:32", 
+            "modified": "2010-10-12 15:02:32", 
+            "slug": "rhok1"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "grid.grid", 
+        "fields": {
+            "description": "Projects sponsored by The World Bank", 
+            "title": "World Bank", 
+            "is_locked": true, 
+            "created": "2010-10-12 15:01:56", 
+            "modified": "2010-10-12 15:01:56", 
+            "slug": "worldbank"
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "grid.gridhack", 
+        "fields": {
+            "hack": 1, 
+            "grid": 2, 
+            "modified": "2010-10-12 15:01:20", 
+            "created": "2010-10-12 15:01:20"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "grid.gridhack", 
+        "fields": {
+            "hack": 4, 
+            "grid": 2, 
+            "modified": "2010-10-12 15:01:20", 
+            "created": "2010-10-12 15:01:20"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "grid.gridhack", 
+        "fields": {
+            "hack": 2, 
+            "grid": 3, 
+            "modified": "2010-10-12 15:01:56", 
+            "created": "2010-10-12 15:01:56"
+        }
+    }
+]
