@@ -52,28 +52,6 @@
             </tbody>        
          </table>
 
-        {% if object.pypi_url and object.pypi_url != "http://pypi.python.org/pypi/" %}
-            <h2>PyPI {% if object.pypi_downloads %}( {{ object.pypi_downloads }} downloads ){% endif %}</h2>
-            <p><a href="{{ object.pypi_url }}">{{ object.pypi_url }}</a></p>
-            <table>
-                <tr>
-                    <th>Version</th>
-                    <th>License</th>                
-                    <th><img src="{{ STATIC_URL }}img/grayarrow_20x20_clear.png" alt="Downloads" /></th>
-                </tr>
-                {% for version in object.version_set.all %}
-                    {% if not version.hidden %}
-                    <tr>
-                        <td>{{ version.number }}</td>
-                        <td>{{ version.license|default:"none" }}</td>                    
-                        <td>{{ version.downloads|default:"n/a" }}</td>
-                    </tr>
-                    {% endif %}
-                {% endfor %}
-            </table>
-        {% else %}
-            <h2>No PyPI release</h2>
-        {% endif %}
 
         <h2>Participants</h2>
 
