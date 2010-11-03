@@ -11,8 +11,9 @@ from urllib import urlopen
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
-from django.db import models
+from django.db import models, IntegrityError
 from django.utils.translation import ugettext_lazy as _
+from django.template.defaultfilters import slugify
 
 from github2.client import Github
 
@@ -90,6 +91,7 @@ class Hack(BaseModel):
 
     title           = models.CharField(_("Title"), max_length="100")
     slug            = models.SlugField(_("Slug"), help_text="Slugs will be lowercased", unique=True)
+    description     = models.SlugField(_("Slug"), help_text="Slugs will be lowercased", unique=True)
     category        = models.ForeignKey(Category, verbose_name="Installation", help_text=category_help_text)
     repo            = models.ForeignKey(Repo, null=True)
     repo_description= models.TextField(_("Repo Description"), blank=True)
@@ -126,13 +128,32 @@ class Hack(BaseModel):
 
         self = handler.pull(self)
 
-
     class Meta:
         ordering = ['title']
 
     def __unicode__(self):
-
         return self.title
+
+    def save(self, *args, **kwargs):
+        """Auto-populate an empty slug field from the Hack title and
+        if it conflicts with an existing slug then append a number and try
+        saving again.
+        """
+        if not self.slug:
+          self.slug = slugify(self.title)
+        while True:
+          try:
+            super(Hack, self).save(*args, **kwargs)
+          # Assuming the IntegrityError is due to a slug fight
+          except IntegrityError:
+            match_obj = re.match(r'^(.*)-(\d+)$', self.slug)
+            if match_obj:
+              next_int = int(match_obj.group(2)) + 1
+              self.slug = match_obj.group(1) + '-' + str(next_int)
+            else:
+              self.slug += '-2'
+          else:
+            break
 
     @models.permalink
     def get_absolute_url(self):
