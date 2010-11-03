@@ -29,13 +29,13 @@ def pull(cur_hack):
 
     try:
       commits = github.commits.list(repo_name)
+      for commit in commits:
+        c = hack.models.Commit()
+        c.commit_date = commit.committed_date
+        c.hack = cur_hack
+        c.save()
     except:
       print 'unable to get commits'
-    for commit in commits:
-      c = hack.models.Commit()
-      c.commit_date = commit.committed_date
-      c.hack = cur_hack
-      c.save()
 
 
     return cur_hack
