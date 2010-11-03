@@ -1,0 +1,166 @@
+Timestamp,Team Name,Team participants,Short description of hack,Code Repository,Other Online Resources
+6/6/2010 8:20:49,Crisis Corps,"Nigel Snod
+Alex Schoof
+Sachin Kamboj
+Alex Quinn
+Danny Iachini
+Jay Baker
+Aliou Sylla
+Alex Parker
+Brian Ghigiarelli
+Montana Harkin","The Crisis Corp Facebook Application was created out of the need to aggregate crowdsourcing resources for disaster relief tasks, such as translation of SMS messages and digital map enhancement. It is crucial to have a crowdsourcing network in place prior to a disaster so that accomplishing Mechanical Turk-like tasks requires only activation of the network, not creation of it. The app is designed to take advantage of the social aspects of Facebook in order to create a crowdsourcing network of individuals, gathering and recording their skillset and interest data to help qualify them as candidates for working on whatever tasks and needs may arise. Crisis Corp is not a Mechanical Turk application; we create the network of people that are standing by for you to call into service with your evaluation system. Organizations coordinating their crowdsourcing efforts through Crisis Corp enhances the credibility of the tool, and helps grow the social network of users through merit based incentives setup by Crisis Corp and granted by the organization. ",http://github.com/harking/crisis-corps,"http://www.crisiscorps.org
+http://wiki.rhok.org/CrisisCorps"
+6/6/2010 8:22:37,WWCERTS,Stephen Rees email@svrees.com,"The RHOK projects going on today are diverse and many. 
+The WWCERTS project has the potential to tie a lot of these together into one unifying global disaster response portal.
+CERTs as they're known exist really only in the USA, under the Citizen Corps under FEMA. However, the need to coordinate resources that this project seeks to handle is a problem across all emergency responses world-wide.
+As such, it is a waste to develop this specifically for any one CERT. This project is being developed to handle emergencies anywhere in the world, yet provide all the functionality that a particular entity such as a CERT would need, tailored to each group.
+The goal is to provide a portal that provides vital information to responders, coordination of resources (requests and fulfillment), and an easy to use interface that graphically places relevant information on a map.
+Information will also be available to download in common useful formats.
+A mobile interface will be developed to support and provide portal tools on the ground.",http://github.com/srees/WWCERTS---RHOK-1-DC,"WIKI Initial Specification - http://wiki.rhok.org/Talk:CERTS
+Planning to setup initial test site at http://wwcert.svrees.com, not yet ready"
+6/6/2010 8:26:52,LPF Micros,"Glenn Pearson, Glenn_Pearson@nlm.nih.gov
+Emad Ibrahim, eibrahim@gmail.com
+Jeff Bobish, jbobish@gmail.com
+Vicky Somma, vicky@tgaw.com
+Ryan Somma, ryeguy123@yahoo.com
+Ari Kaliannan@newtechgs.com
+Kumar Rangasmy, Kumar@newtechgs.com","To TriagePic, add webcam, outbox pix preview
+Start ReUnite version for Android platform",http://github.com/eibrahim/TriagePic
+6/6/2010 8:35:11,AlertMe,"Prem Ramaswami -  premr@google.com
+Jeromy Henry -	 jeromy@google.com
+Joshua Szmajda -	 joshsz@gmail.com
+Adam Pridgen -	 adam.pridgen@thecoverofnight.com
+Alice Chang -	 this1kid@gmail.com
+J. Tipan Verella -	 tipan.verella@gmail.com
+Luke Berndt -	 lukekb@gmail.com  - luke.berndt@dhs.gov","Allow emergency messages related to disasters (evacuations for hurricanes, tsunamis, all the way to weather alerts) to appear on a browser or mobile phone similar to the Emergency Broadcast System for US Television.  ",http://github.com/joshsz/AlertMe,"Presentation: http://docs.google.com/present/view?id=dhnqvchc_198cx4qvphq
+
+Working Doc: http://docs.google.com/document/pub?id=1jXn1UutZMYMkG1eKMkWsKvEkSO40i9fY5ocCSjrrAIU"
+6/6/2010 8:42:34,Carrot,"Kevin Rabsatt
+Matt Glover
+Sean Herron
+Paul Suh
+Pablo Mayrgundter
+Jen Rosenberger
+Anna Curran
+Tim Craig","Resource and situation management tool. Created an approach to managing field requests and resource/service delivery and locations.
+
+Currently have implemented the resource/service request management from the incoming/approval side at Headquarters.
+
+Developed SMS syntax for requesting resources/services from an NGO's Headquarters from anywhere in the world. Designed to be used by NGO staff and helpers, not the general public. 
+
+Headquarters will receive request in a web based Command Console where they can accept the request or ask for additional details by return SMS message. Headquarters will then fulfill the request, update the status in the data store (cloud hosted), and track the requests. 
+
+
+--- future enhancements
+- NGO's can choose to make some or all of their information available to other NGO's via a map based web application thereby creating a resource request common operating picture.
+
+- More robust communications from the field.
+
+- Tracking field staff",http://github.com/mattglover/Carrot
+6/6/2010 8:43:18,311-to-911,"Jason Brooks <jason.brooks@gmail.com>
+Carina Koo <carinakoo@gmail.com>
+Ted Morse <ted.morse@sv.cmu.edu>
+Eric Park <epark@email.arc.nasa.gov>
+Trey Smith <trey.smith@nasa.gov>
+","A citizen help network at your side, both every day and when you need it the most.  
+
+When disaster strikes, 911 is overwhelmed.  311-to-911 is an online forum that lets citizens practice helping each other in everyday situations so they are ready to help each other in a disaster.  Users can submit questions and problem reports using text messages.  Other users in turn, can reply to submitted questions and help triage problem reports.
+
+",http://github.com/jeztek/imok_appengine
+6/6/2010 8:52:19,Chasm,"Chris Turitzin, cturitzin@gmail.com
+Otavio Good, otaviogood@yahoo.com
+Richard Sun, sideriusRS@gmail.com
+Vlad Rhripunov, khripunov@yahoo.com
+Max Lotstein, mlotstein@gmail.com
+Jason Li, jcl43@cornell.edu
+Serign Jobe, serignjobe@gmail.com
+Bryan R. Michmerhuizen, bmichmerhuizen@sapient.com
+Liz Holcombe, liz.holcombe@bristol.ac.uk
+Malcolm Anderson, m.g.anderson@bristol.ac.uk","Landslide risk is increasing, especially in the most vulnerable communities...but something practical can be done if you understand the physical drivers. We already have the software to model the hazard - we just needed to make it user-friendly and accessible to local engineers.
+
+Before RHOK there was no way for local engineers to enter their field data into the landslide risk algorithm. This hack provides an interface for the engineers to enter their data, preview on a plot, process into output files and then visualize and interpret to understand the hazard. This allows practical solutions for landslide prevention to be designed for construction in communities.
+
+Our solution is two part:
+
+1. A web interface for data entry, plotting and analysis.
+2. A windows application for visualization and interpretation of the data.",http://github.com/mlotstein/chasm,"Wiki Page: http://wiki.rhok.org/Access_to_Landslide_Prediction_Software_for_Risk_Reduction
+Web Interface (live, constantly updating): http://tuffscene.com/dev/rhok/
+Web Interface (screenshot): http://174.143.153.39/slide/chasm_web.jpg
+Windows Application (screenshot): http://174.143.153.39/slide/chasm_windows.png"
+6/6/2010 8:53:42,LPF Micros,"This is a supplemental entry, please merge with our previous entry.  Note that we have 2 separate git repositories, one listed below, one on the original submission","supplemental, particularly more about ReUnite port to Android", http://github.com/ryeguy123/ReUnite-Android-Application ,"http://wiki.rhok.org/Person_Finder-like_NLM_Micro-Projects
+http://wiki.rhok.org/Person_Finder_Like_NLM_Micro_Projects_DC_team
+problem statement at http://wiki.rhok.org/People-finder, at bottom
+
+There's powerpoint presentation being put together now.
+
+Future: Ari & Kumar will work on Win Phone 7 version of ReUnite"
+6/6/2010 8:55:41,SMS Help,"William Marshall, will@willmarshall.org
+Sean Smitz, sean.73@gmail.com
+Robbie Schingler, rschingler@gmail.com
+Josh McKenty, jmckenty@gmail.com
+Kendrick Taylor, sktayloriii@gmail.com
+Jay Koby, jkoby@tinytiny.net
+Todd Khozein, todd.khozein@secondmuse.com
+","SMS Help is a platform which allows a set of services to be provided through the use of SMS *only*.  This will help give aid/services/assistance to a ~billion people that have phones but no internet. Via simple SMS questions and answers (with machines or humans at the back end), users can assist in assessing local infrastructure (perhaps with SMS credits as motivation), gain basic medical assessment, collect data for volunteers with skills of assistance, and give useful information in times of a disaster.",http://github.com/joshuamckenty/smshelp,"http://www.smshlp.org
+http://wiki.rhok.org/SMS_Help
+
+"
+6/6/2010 9:00:04,Python-Geoserver,"Ole Nielsen ole.nielsen@aifdr.org
+Ariel Núñez ingenieroariel@gmail.com
+Steve Arnold stephen.arnold@acm.org
+Scott Wimer scott.wimer@gmail.com","Python API to consume geographical data in a numerical computation friendly fashion.
+
+The idea is to make it easier for risk disaster scientists to get vector and raster data from GeoServer, perform intensive calculations (e.g. hazard x exposure x vulnerability) and push the data back to be used by people.
+
+This could be used for a number of risk assessment initiatives like GEM and CAPRA.",http://github.com/ingenieroariel/python-geoserver,"http://github.com/ingenieroariel/gsconfig.py
+http://github.com/ingenieroariel/owslib
+
+We forked/improved these two external projects."
+6/6/2010 9:02:21,CrisisWiki,"John Serreo, bigbadserrao@gmail.com
+Jeff Mace, jeffmace@gmail.com
+Deborah Shaddon, dshaddon@comcast.net
+Joaquin Toro, joaquintoro@gmail.com
+Andy Carvin, acarvin@npr.org
+Katie Filbert, filbertk@gmail.com
+","CrisisWiki is an editable directory of resources related to disasters and crises around the world, inspired by HurricaneWiki but meant to be broader to cover all types of disasters and preparedness information.  The site uses Semantic MediaWiki, to give the information more structure than a traditional wiki, as well as enable simplified form-based editing.
+
+This weekend, the CrisisWiki team reviewed how the wiki was used for the recent Tennessee Floods and other events, and developed wireframes and mockups of how CrisisWiki can be improved in terms of layout, user interface, templates, and data structures.",http://github.com/filbertkm/crisiswiki,"http://crisiswiki.org - current site
+http://crisiswiki.firststrike.net - sandbox site, incorporating new designs and features
+http://groups.google.com/group/crisiswiki - Google Group"
+6/6/2010 9:08:30,PersonFinder Dup Detection,"Achim Ruopp (achim_ruopp@hotmail.com)
+Bryan Blatt (bryanb@google.com)","There is a problem with the PersonFinder database with a lot of duplicate data.  This comes from the same source entering a record multiple times, and also from other sources of person finder records that come in from feeds (twitter, other databases, etc.).  This is problematic for someone who now has to sort through a lot of duplicated information.  Our hack is to do smart offline clustering of similar records, and then present a mocked front end to more intelligently present this clustered information."
+6/6/2010 9:10:21,Turquilt,"Christiaan Adams - csadams@google.com 
+Kate Chapman - k8chapman@gmail.com
+John Crowley - bostoncello@gmail.com
+Katie Filbert - filbertk@gmail.com
+Carlos Linares - zenodux@gmail.com
+Travis Pinney - travis.pinney@gmail.com
+Gavin Treadgold  - gavin@sahanafoundation.org  ","Many photos are being taken in disaster scenarios and other situations with balloons and uavs which do not provide good image pose data beyond gps coordinates of the camera.  To properly georeference and rectify these images, manual matching against other imagery is necessary.  For datasets with thousands of images, a mechanical turk process is needed.  This project aims to build a web application to facilitate turking of these rectification tasks using online mapping tools.  Rectified images will be stitched and blended to produce mosaics of community produced imagery useful to disaster response and other efforts.  ",http://code.google.com/p/turquilt/,"http://code.google.com/p/turquilt/
+http://groups.google.com/group/turquilt"
+6/6/2010 9:20:15,PersonFinder and social Networks ,"New York
+Jared erwin jared.erwin@gmail.com
+Alice Bonhomme-Biais, aliceb@google.com
+
+Sydney
+Eric TorreBorre
+
+Santiago
+Pedro Fuentes, pedrofuentes@gmail.com
+Sebastian Gonzalez sebastian@chileayuda.com
+Ricardo Zilleruelo rzilleruelo@gmail.com
+
+
+","Use social networking to raise awareness about PersonFinder and find additional information about missing people.
+Goal: scrape tweets and find tweets talking about missing people then
+1) Pull information (profile photos, account ids,...) in PersonFinder
+2) Reply to the tweets with a link to personfinder 
+
+Progress made to updateTwiit-pfif project to implement 1 and 2)
+Suggested update to Pfif with Ids of person for various social services",http://github.com/chirags/twitter-to-pfif,http://wiki.rhok.org/PersonFinder_and_social_networks
+6/6/2010 9:22:25,I am OK - Person Finder ,"Trey Smith, trey.smith@west.cmu.edu
+Alice Bonhomme-Biais, aliceb@google.com","Send the I am OK information about a person to PersonFinder.
+So people searching in PersonFinder know a person sent a ""I am ok"" message.
+
+Once PFIF spec has been updated with social networks information, it will also populate the field.
+",,http://wiki.rhok.org/I_am_ok_and_PersonFinder
+6/6/2010 9:44:24,Person Finder - Accessibility,"David Hogan, Jeromy Henry",To make it easier for users to find people in crisis areas by enhancing their ability to query individuals in localized languages.,,https://docs.google.com/present/edit?id=dfjpvtm7_32f5br8ts4
