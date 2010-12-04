@@ -1,10 +1,10 @@
 from django.contrib import admin
 from reversion.admin import VersionAdmin
 
-from hack.models import Category, Hack, HackExample, Repo, Commit, Version
+from hack.models import Category, Hack, Deployment, Repo, Commit, Version
 
-class HackExampleInline(admin.TabularInline):
-    model = HackExample
+class DeploymentInline(admin.TabularInline):
+    model = Deployment
 
 class HackAdmin(VersionAdmin):
 
@@ -14,7 +14,7 @@ class HackAdmin(VersionAdmin):
     list_display = ("title", "created", )
     date_hierarchy = "created"
     inlines = [
-        HackExampleInline,
+        DeploymentInline,
     ]
     fieldsets = (
         (None, {

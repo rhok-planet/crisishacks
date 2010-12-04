@@ -14,8 +14,8 @@ from django.template import RequestContext
 from django.template.loader import render_to_string
 
 
-from hack.forms import HackForm, HackExampleForm
-from hack.models import Category, Hack, HackExample, Repo
+from hack.forms import HackForm, DeploymentForm
+from hack.models import Category, Hack, Deployment, Repo
 
 def repos_for_js():
     repos = {}
@@ -75,20 +75,24 @@ def update_hack(request, slug):
 
 
 
-def add_example(request, slug, template_name="hack/add_example.html"):
+def add_deployment(request, slug, template_name="hack/add_deployment.html"):
 
     hack = get_object_or_404(Hack, slug=slug)
-    new_hack_example = HackExample()
-    form = HackExampleForm(request.POST or None, instance=new_hack_example)
-
-    if form.is_valid():
-        hack_example = HackExample(hack=hack,
-                title=request.POST["title"],
-                url=request.POST["url"])
+    new_hack_example = Deployment()
+    form = DeploymentForm(request.POST or None, instance=new_hack_example)
+    
+    if form.is_valid() and request.POST:
+        hack_example = Deployment(hack=hack,
+                title=form.cleaned_data["title"],
+                url=form.cleaned_data["url"],
+                location=form.cleaned_data["location"],
+                description=form.cleaned_data["description"],
+                number_users=form.cleaned_data["number_users"],
+                created_by=request.user)
         hack_example.save()
         return HttpResponseRedirect(reverse("hack", kwargs={"slug":hack_example.hack.slug}))
 
-
+    raise Exception(form)
     return render_to_response(template_name, {
         "form": form,
         "hack":hack
@@ -98,8 +102,8 @@ def add_example(request, slug, template_name="hack/add_example.html"):
 
 def edit_example(request, slug, id, template_name="hack/edit_example.html"):
 
-    hack_example = get_object_or_404(HackExample, id=id)
-    form = HackExampleForm(request.POST or None, instance=hack_example)
+    hack_example = get_object_or_404(Deployment, id=id)
+    form = DeploymentForm(request.POST or None, instance=hack_example)
 
     if form.is_valid():
         form.save()

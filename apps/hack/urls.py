@@ -6,7 +6,7 @@ from django.views.generic.simple import direct_to_template
 
 from hack.models import Hack
 from hack.views import (
-                            add_example,
+                            add_deployment,
                             add_hack,
                             ajax_hack_list,
                             edit_hack,
@@ -55,15 +55,15 @@ urlpatterns = patterns("",
     ),
 
     url(
-        regex = "^(?P<slug>[-\w]+)/example/add/$",
-        view    = add_example,
-        name    = "add_example",
-    ),
-
-    url(
         regex = "^(?P<slug>[-\w]+)/example/(?P<id>\d+)/edit/$",
         view    = edit_example,
         name    = "edit_example",
+    ),
+
+    url(
+        regex = "^(?P<slug>[-\w]+)/deployment/add/$",
+        view    = add_deployment,
+        name    = "add_deployment",
     ),
 
     url(

@@ -2,7 +2,7 @@ from django.core.validators import URLValidator
 from django.forms import ModelForm
 from django.template.defaultfilters import slugify
 
-from hack.models import Hack, HackExample
+from hack.models import Hack, Deployment 
 
 class HackForm(ModelForm):
 
@@ -14,14 +14,14 @@ class HackForm(ModelForm):
         fields = ['repo_url', 'title', 'slug', 'repo', 'category', ]
 
 
-class HackExampleForm(ModelForm):
+class DeploymentForm(ModelForm):
 
     class Meta:
-        model = HackExample
-        fields = ['title', 'url']
+        model = Deployment
+        fields = ['title', 'url', 'description', 'location', 'number_users']
 
 class HackExampleModeratorForm(ModelForm):
 
     class Meta:
-        model = HackExample
-        fields = ['title', 'url', 'active']
+        model = Deployment
+        fields = ['title', 'url']

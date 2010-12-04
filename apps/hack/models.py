@@ -197,3 +197,12 @@ class Version(BaseModel):
 
     def __unicode__(self):
         return "%s: %s" % (self.hack.title, self.number)
+
+class Deployment(BaseModel):
+    """Where is this Hack being used"""
+    hack = models.ForeignKey(Hack)
+    url = models.URLField(_("URL"), blank=True, null=True)
+    location = models.CharField("Location", max_length="50")
+    created_by = models.ForeignKey(User, blank=True, null=True)
+    description = models.TextField("Description", max_length="500")
+    number_users = models.IntegerField("Number Users", default=-1)
