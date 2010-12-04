@@ -43,7 +43,7 @@ Installation
     cd <installation-directory>
     virtualenv env-crisishacks
     source env-crisishacks/bin/activate
-    git clone git://github.com/rhok-planet/djangopackages.git crisishacks
+    git clone https://github.com/rhok-planet/crisishacks.git crisishacks
     cd crisishacks
     pip install -r requirements/project.txt
         
@@ -52,11 +52,17 @@ In production add symlinks to the pinax and uni_form media directories::
     cd media
     ln -s ../../env-crisishacks/lib/python2.6/site-packages/pinax/media/default/pinax/ pinax
     ln -s ../../env-crisishacks/lib/python2.6/site-packages/uni_form/media/uni_form/ uni_form
+
+
+Initialize the database
+=======================
+
+Change your settings.py file to point to prod.db then do::
+
+    python manage.py syncdb
     
 Starting the development server
 ===============================
-
-Change your local_settings.py file to point to prod.db then do::
 
     python manage.py runserver
 
