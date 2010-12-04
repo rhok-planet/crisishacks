@@ -101,8 +101,8 @@ MIDDLEWARE_CLASSES = [
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
-    "reversion.middleware.RevisionMiddleware",
-    "django_openid.consumer.SessionConsumer",
+    #"reversion.middleware.RevisionMiddleware",
+    #"django_openid.consumer.SessionConsumer",
     "django.contrib.messages.middleware.MessageMiddleware",
     "pinax.apps.account.middleware.LocaleMiddleware",
     "pagination.middleware.PaginationMiddleware",
@@ -234,7 +234,7 @@ DEBUG_TOOLBAR_CONFIG = {
 logging.basicConfig(
         level=logging.DEBUG,
         format='%(asctime)s %(levelname)s "%(message)s" in %(funcName)s() line %(lineno)d in %(pathname)s',
-        filename='main.log',
+        filename='/tmp/main.log',
         filemode='a',
 )
 
