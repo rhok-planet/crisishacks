@@ -2,7 +2,7 @@
 
 {% load i18n %}
 {% load hack_tags %}
-
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 {% block head_title %}{{ object.title }}{% endblock %}
 
 
@@ -109,6 +109,7 @@
         </div>
         
         {% if object.deployment_set.all %}
+        <div id="hack-deploymentmap" style="width: 600px; height: 600px;"></div>
         <ol id="hack-sitelist">
             {% for deployment in object.deployment_set.all %}
                 <li>
@@ -130,7 +131,6 @@
     </div>
     
 </div>    
-
 {% endblock %}
 
 {% block extra_body %}
@@ -161,4 +161,59 @@
 
     });    
 </script>      
+<script type="text/javascript"
+    src="http://maps.google.com/maps/api/js?sensor=false">
+</script>
+
+{% if object.deployment_set.all %}
+<script type="text/javascript"> 
+  var geocoder;
+  var map;
+  function initialize() {
+    geocoder = new google.maps.Geocoder();
+    var latlng = new google.maps.LatLng(-34.397, 150.644);
+    var myOptions = {
+      zoom: 8,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    map = new google.maps.Map(document.getElementById("hack-deploymentmap"), myOptions);
+     {% for deployment in object.deployment_set.all %}
+       codeAddress({
+                        'title': '{{ deployment.title }}',
+                        'location': '{{ deployment.location }}',
+                        'description': '{{ deployment.description }}'
+                    });
+     {% endfor %}
+  }
+
+  function codeAddress(deployment) {
+    geocoder.geocode( { 'address': deployment.location }, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        map.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+            map: map, 
+            position: results[0].geometry.location,
+            title: deployment.title
+        });
+      } else {
+        alert("Geocode was not successful for the following reason: " + status);
+      }
+    });
+  }
+
+  if (typeof window.onload != 'function') {
+      window.onload=initialize;
+  } else {
+      var old_onload = window.onload;
+      window.onload = function () {
+        if (old_onload) {
+          window.onload();
+        }
+        initialize();
+      }
+  }
+
+</script>
+{% endif %}
 {% endblock %}      
