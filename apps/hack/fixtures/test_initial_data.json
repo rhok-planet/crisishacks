@@ -43,7 +43,7 @@
             "description": "", 
             "title": "Github", 
             "url": "http://github.com", 
-            "handler": "hack.handlers.unsupported", 
+            "handler": "hack.handlers.github", 
             "created": "2010-08-14 19:50:11", 
             "modified": "2010-08-15 09:29:00", 
             "repo_regex": "", 

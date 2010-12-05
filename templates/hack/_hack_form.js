@@ -9,13 +9,6 @@ $("#div_id_repo").hide();
 
 var repo_urls = eval({{ repos|safe }});
 
-pypi_url_g = "http://pypi.python.org/pypi/";
-
-$("#id_pypi_url").val($("#id_pypi_url").val().replace(pypi_url_g,""));
-
-$("#id_pypi_url").change(function(e){
-    $("#id_pypi_url").val($("#id_pypi_url").val().replace(pypi_url_g,""));
-});
 
 $("#id_repo_url").keyup(function(e) {
     var url = $("#id_repo_url").val();
@@ -41,7 +34,6 @@ $("#id_repo_url").change(function(e) {
                 };
                 var slug = URLify(url_array[url_array.length-1]);
                 $("#id_slug").val(slug);
-                $("#id_pypi_url").val(slug);
                 $("#package-form-message").text("Your package is hosted at " + key)
             };
         };
@@ -49,13 +41,6 @@ $("#id_repo_url").change(function(e) {
 });
 
 $("#package-form").submit(function(e) {
-    // hack to get around some database vs front end weirdness
-    var pypi_url = $("#id_pypi_url").val();
-    if (pypi_url.length > 0){
-      $("#id_pypi_url").attr("name", "nuke");
-      $("#temp").val(pypi_url_g + pypi_url);
-      $("#temp").attr("name", "pypi_url");     
-    };
     
     // TODO - make this work off a database change where we add the is_other boolean to repos
     var repo = $("#id_repo").val();
