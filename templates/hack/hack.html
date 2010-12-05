@@ -113,6 +113,10 @@
             {% for deployment in object.deployment_set.all %}
                 <li>
                     <a href="{{ deployment.url }}">{{ deployment.title }}</a>
+                    <a href="{{ deployment.url }}">{{ deployment.location }}</a>
+                    {% if deployment.number_users > 0 %}
+                        {{ deployment.number_users }}
+                    {% endif %}
                     {% if request.user.is_authenticated %}
                         <div id="hack-editlink">
                             <a href="{% url edit_example object.slug deployment.id %}">edit</a>

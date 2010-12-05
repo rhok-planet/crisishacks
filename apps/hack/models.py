@@ -201,8 +201,15 @@ class Version(BaseModel):
 class Deployment(BaseModel):
     """Where is this Hack being used"""
     hack = models.ForeignKey(Hack)
+    title = models.CharField(_("Title"), max_length="100")
     url = models.URLField(_("URL"), blank=True, null=True)
     location = models.CharField("Location", max_length="50")
     created_by = models.ForeignKey(User, blank=True, null=True)
     description = models.TextField("Description", max_length="500")
-    number_users = models.IntegerField("Number Users", default=-1)
+    number_users = models.IntegerField("Number Users", blank=True, null=True)
+
+    class Meta:
+        ordering = ['title']
+
+    def __unicode__(self):
+        return self.title

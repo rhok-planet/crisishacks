@@ -92,7 +92,6 @@ def add_deployment(request, slug, template_name="hack/add_deployment.html"):
         hack_example.save()
         return HttpResponseRedirect(reverse("hack", kwargs={"slug":hack_example.hack.slug}))
 
-    raise Exception(form)
     return render_to_response(template_name, {
         "form": form,
         "hack":hack
