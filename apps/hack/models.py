@@ -200,6 +200,9 @@ class Deployment(BaseModel):
     created_by = models.ForeignKey(User, blank=True, null=True)
     description = models.TextField("Description", max_length="500")
     number_users = models.IntegerField("Number Users", blank=True, null=True)
+    lat = models.FloatField(blank=True, null=True)
+    lng = models.FloatField(blank=True, null=True)
+    bbox = models.CharField(blank=True, null=True, max_length="50")
 
     class Meta:
         ordering = ['title']

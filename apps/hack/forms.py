@@ -18,7 +18,7 @@ class DeploymentForm(ModelForm):
 
     class Meta:
         model = Deployment
-        fields = ['title', 'url', 'description', 'location', 'number_users']
+        fields = ['title', 'url', 'description', 'location', 'number_users', 'lat', 'lng', 'bbox']
 
 class HackExampleModeratorForm(ModelForm):
 

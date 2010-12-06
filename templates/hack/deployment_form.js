@@ -16,14 +16,25 @@ function initialize() {
 function codeAddress(loc, description) {
   geocoder.geocode( { 'address': loc }, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
+      // Center map and drop marker
       map.setCenter(results[0].geometry.location);
       var marker = new google.maps.Marker({
           map: map, 
           position: results[0].geometry.location,
           title: description
       });
-      var rect = new google.maps.Rectangle({ 'bounds': results[0].geometry.bounds });
+      // Add rectangle on the region
+      var bounds = results[0].geometry.bounds;
+      var rect = new google.maps.Rectangle({ 'bounds': bounds });
       rect.setMap(map);
+      // Save the geocode data
+      $("#id_lat").val(results[0].geometry.location.lat());
+      $("#id_lng").val(results[0].geometry.location.lng());
+      $("#id_bbox").val(
+        bounds.getSouthWest().lat() + ","
+        + bounds.getSouthWest().lng() + ","
+        + bounds.getNorthEast().lat() + ","
+        + bounds.getNorthEast().lng());
     } else {
       alert("Geocode was not successful for the following reason: " + status);
     }
@@ -51,3 +62,7 @@ if (typeof window.onload != 'function') {
 }
 
 $("#id_location").change(onLocationInput);
+$("#id_lat").hide();
+$("#id_lng").hide();
+$("#id_bbox").hide();
+

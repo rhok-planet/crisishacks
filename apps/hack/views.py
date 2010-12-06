@@ -88,7 +88,10 @@ def add_deployment(request, slug, template_name="hack/add_deployment.html"):
                 location=form.cleaned_data["location"],
                 description=form.cleaned_data["description"],
                 number_users=form.cleaned_data["number_users"],
-                created_by=request.user)
+                created_by=request.user,
+                lat=form.cleaned_data["lat"],
+                lng=form.cleaned_data["lng"],
+                bbox=form.cleaned_data["bbox"])
         hack_example.save()
         return HttpResponseRedirect(reverse("hack", kwargs={"slug":hack_example.hack.slug}))
 
