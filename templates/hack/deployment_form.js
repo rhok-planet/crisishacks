@@ -34,7 +34,7 @@ function onLocationInput() {
     var title = $("#id_title").val();
     var loc = $("#id_location").val();
     
-    if (title != null && title != "" && loc != null && loc != "")
+    if (loc != null && loc != "")
         codeAddress(loc, title);
 }
 
