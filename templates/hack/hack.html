@@ -169,38 +169,53 @@
 <script type="text/javascript"> 
   var geocoder;
   var map;
+  var deployments = [];
+  var circles = [];
+  {% for deployment in object.deployment_set.all %}
+    deployments.push({
+      'title': '{{ deployment.title }}',
+      'location': '{{ deployment.location }}',
+      'lat': '{{ deployment.lat|default_if_none:"none" }}',
+      'lng': '{{ deployment.lng|default_if_none:"none" }}',
+      'bbox': '{{ deployment.bbox|default_if_none:"none" }}',
+      'description': '{{ deployment.description }}'
+    });
+  {% endfor %}
+
   function initialize() {
-    geocoder = new google.maps.Geocoder();
-    var latlng = new google.maps.LatLng(-34.397, 150.644);
+    var latlng = new google.maps.LatLng(0,0);
     var myOptions = {
-      zoom: 8,
+      zoom: 3,
       center: latlng,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+      mapTypeId: google.maps.MapTypeId.TERRAIN
     }
     map = new google.maps.Map(document.getElementById("hack-deploymentmap"), myOptions);
-     {% for deployment in object.deployment_set.all %}
-       codeAddress({
-                        'title': '{{ deployment.title }}',
-                        'location': '{{ deployment.location }}',
-                        'description': '{{ deployment.description }}'
-                    });
-     {% endfor %}
+    $.each(deployments, function(i, deployment){
+      addDeployment(deployment);
+    });
   }
 
-  function codeAddress(deployment) {
-    geocoder.geocode( { 'address': deployment.location }, function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-        map.setCenter(results[0].geometry.location);
-        var marker = new google.maps.Marker({
-            map: map, 
-            position: results[0].geometry.location,
-            title: deployment.title
-        });
-      } else {
-        alert("Geocode was not successful for the following reason: " + status);
-      }
-    });
-  }
+
+  function addDeployment(deployment){
+    var center = new google.maps.LatLng(deployment.lat || 0, deployment.lng || 0);
+    var image = 'http://google-maps-icons.googlecode.com/files/sun.png';
+    var myLatLng = new google.maps.LatLng(-33.890542, 151.274856);
+    var marker = new google.maps.Marker({
+      position : center,
+      map : map,
+      icon : image,
+      title : deployment.title
+    });
+    enableMarkerInfoWindow(marker, deployment);
+  
+  }
+
+  function enableMarkerInfoWindow(marker, deployment){
+  var infowindow = new google.maps.InfoWindow({ content: deployment.title});
+  google.maps.event.addListener(marker, 'click', function() {
+    infowindow.open(map,marker);
+  });
+  }
 
   if (typeof window.onload != 'function') {
       window.onload=initialize;
