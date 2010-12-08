@@ -33,8 +33,8 @@ def add_hack(request, template_name="hack/hack_form.html"):
         new_hack = form.save()
         new_hack.created_by = request.user
         new_hack.last_modified_by = request.user
-        new_hack.save()
         new_hack.fetch_metadata()
+        new_hack.save()
         return HttpResponseRedirect(reverse("hack", kwargs={"slug":new_hack.slug}))
 
     return render_to_response(template_name, {
@@ -70,6 +70,7 @@ def update_hack(request, slug):
 
     hack = get_object_or_404(Hack, slug=slug)
     hack.fetch_metadata()
+    hack.save()
 
     return HttpResponseRedirect(reverse("hack", kwargs={"slug": hack.slug}))
 
