@@ -60,6 +60,7 @@ class Repo(BaseModel):
     user_regex   = models.CharField(_("User Regex"), help_text="Regex to calculate user's name or id",max_length="100", blank=True)
     repo_regex   = models.CharField(_("Repo Regex"), help_text="Regex to get repo's name", max_length="100", blank=True)
     slug_regex   = models.CharField(_("Slug Regex"), help_text="Regex to get repo's slug", max_length="100", blank=True)
+    url_regex    = models.CharField(_("Url Regex"), help_text="Regex to identify a repo's url", max_length="100", blank=True)
     handler      = models.CharField(_("Handler"),
         help_text="Warning: Don't change this unless you know what you are doing!",
         choices=REPO_CHOICES,

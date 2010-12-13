@@ -49,7 +49,8 @@
             "repo_regex": "", 
             "is_supported": true, 
             "slug_regex": "", 
-            "is_other": false
+            "is_other": false,
+            "url_regex": "https?://github.com/[-\\w]+/[-\\w]+"
         }
     }, 
     {

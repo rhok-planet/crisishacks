@@ -17,6 +17,8 @@ def pull(cur_hack):
       cur_hack.repo_watchers    = repo.watchers
       cur_hack.repo_forks       = repo.forks
       cur_hack.repo_description = repo.description
+      if not cur_hack.title: cur_hack.title = repo.name
+      if not cur_hack.description: cur_hack.description = repo.description
     except:
       print 'unable to get repo'
 
