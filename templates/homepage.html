@@ -3,7 +3,6 @@
 {% load cache %}
 {% load i18n %}
 {% load ifsetting_tag %}
-{% load hack_tags %}
 
 {% block extra_head %}
     <link rel="stylesheet" href="{{ STATIC_URL }}css/home.css" />
@@ -56,42 +55,16 @@
         </div>
     </div>
 
-     {% for category in categories %}
+    {% for category in categories %}
         <h2><a href="{% url category category.slug %}">{{ category.title }}s</a> ( {{ category.count }} )</h2>
         <p>{{ category.description }}</p>
-        <table id="home-hacks">
-            <tr>
-                <th># Using This</th>
-                <th>Name</th>
-                <th>Commits</th>
-                <th><img src="{{ STATIC_URL }}img/eye_20x20_clear.png" /></th>
-                <th><img src="{{ STATIC_URL }}img/fork_20x20_clear.png" /></th>
-            </tr>
 
-            {% for hack in category.hacks %}
-                <tr class="usage-container">
-                    <td class="usage-container">
-                        <span class="usage-count">{{ hack.usage_count }}</span>
-                        &nbsp;
-                        <span class="usage-button">
-                            {% if hack.pk in used_hacks_list %}
-                            {% include "hack/remove_usage_button.html" %}
-                            {% else %}
-                            {% include "hack/add_usage_button.html" %}
-                            {% endif %}
-                        </span>
-                    </td>
-                    <td><a href="{% url hack hack.slug %}">{{ hack.title }}</a></td>
-                    {% cache 86400 hack.commitchart hack %}
-                        <td><img id="hack-githubcommits" src="http://chart.apis.google.com/chart?cht=bvg&chs=105x20&chd=t:{{hack|commits_over_52}}&chco=666666&chbh=1,1,1&chds=0,20" /></td>
-                    {% endcache %}
-                    <td>{{ hack.repo_watchers|default:"n/a" }}</td>
-                    <td>{{ hack.repo_forks|default:"n/a" }}</td>
-                </tr>
-            {% endfor %}
-         </table>
-         <p><a href="{% url category category.slug %}">more {{ category.title_plural|lower }}...</a></p>
-     {% endfor %}
+        {% with category.hacks as hacks %}
+        {% include "hack/snippets/hack_table.html" %}
+        {% endwith %}
+
+        <p><a href="{% url category category.slug %}">more {{ category.title_plural|lower }}...</a></p>
+    {% endfor %}
 
 
 

@@ -1,0 +1,41 @@
+{% load cache %}
+{% load hack_tags %}
+
+<table id="home-hacks">
+    <thead>
+    <tr>
+        <th># Deployments</th>
+        <th># Using This</th>
+        <th>Name</th>
+        <th>Commits</th>
+        <th><img src="{{ STATIC_URL }}img/eye_20x20_clear.png" /></th>
+        <th><img src="{{ STATIC_URL }}img/fork_20x20_clear.png" /></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    {% for hack in hacks %}
+        <tr class="usage-container">
+            <td>{{ hack.deployment_set.count }}</td>
+            <td class="usage-container">
+                <span class="usage-count">{{ hack.usage_count }}</span>
+                &nbsp;
+                <span class="usage-button">
+                    {% if hack.pk in used_hacks_list %}
+                    {% include "hack/remove_usage_button.html" %}
+                    {% else %}
+                    {% include "hack/add_usage_button.html" %}
+                    {% endif %}
+                </span>
+            </td>
+            <td><a href="{% url hack hack.slug %}">{{ hack.title }}</a></td>
+            {% cache 86400 hack.commitchart hack %}                
+                <td><img class="hack-githubcommits" src="http://chart.apis.google.com/chart?cht=bvg&chs=105x20&chd=t:{{hack|commits_over_52}}&chco=666666&chbh=1,1,1&chds=0,20" /></td>
+            {% endcache %}                
+            <td>{{ hack.repo_watchers }}</td>
+            <td>{{ hack.repo_forks }}</td>                
+
+        </tr>    
+    {% endfor %}        
+    </tbody>        
+ </table>
