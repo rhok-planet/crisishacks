@@ -18,7 +18,7 @@ function initialize() {
 function onLocationInput() {
   var title = $("#id_title").val();
   var loc = $("#id_location").val();
-  
+
   if (!loc || loc == "")
     return;
 
@@ -29,9 +29,8 @@ function onLocationInput() {
     // Center map and drop marker
     map.setCenter(results[0].geometry.location);
     var marker = new google.maps.Marker({
-      map: map, 
+      map: map,
       position: results[0].geometry.location,
-      title: description
     });
 
     // Add rectangle on the region
@@ -49,8 +48,6 @@ function onLocationInput() {
       + bounds.getNorthEast().lng());
   });
 }
-
-$.ready(initialize);
 $("#id_location").change(onLocationInput);
 
 $("#id_lat").hide();

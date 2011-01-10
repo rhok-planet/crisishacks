@@ -8,10 +8,10 @@
     {% include "hack/add_usage_button.html" %}
     {% endif %}</td>
     <td><a href="{% url hack hack.slug %}">{{ hack.title }}</a></td>
-    {% cache 500 commitchart hack %}                
+    {% cache 500 commitchart hack %}
         <td><img id="hack-githubcommits" src="http://chart.apis.google.com/chart?cht=bvg&chs=105x20&chd=t:{{hack|commits_over_52}}&chco=666666&chbh=1,1,1&chds=0,20" /></td>
-    {% endcache %}                
+    {% endcache %}
     <td>{{ hack.repo_watchers|default:"n/a" }}</td>
     <td>{{ hack.repo_forks|default:"n/a" }}</td>
-    <td>{{ hack.created|timesince }} ago</td>    
+    <td>{{ hack.created|timesince }} ago</td>
 </tr>

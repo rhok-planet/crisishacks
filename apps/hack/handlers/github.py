@@ -30,11 +30,11 @@ def pull(cur_hack):
       print 'unable to get collaborators'
 
     try:
-      last_commit = Commit.objects.all()[0]
+      local_commits = cur_hack.commit_set.all()
       commits = github.commits.list(repo_name)
       for commit in commits:
-        if not last_commit or commit.committed_date > last_commit:
-          c = hack.models.commit()
+        if not local_commits or commit.committed_date > local_commits[0]:
+          c = hack.models.Commit()
           c.commit_date = commit.committed_date
           c.hack = cur_hack
           c.save()

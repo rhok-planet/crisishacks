@@ -39,3 +39,21 @@
 #package-right { float:left; width:470px; padding-left: 20px;}
 
 #footer { width: 100%; text-align: center; clear: both; }
+
+
+#hack-deploymentform{
+  width:300px;
+  float:left;
+  text-align:left;
+
+}
+
+#hack-deploymentmap{
+margin-left:360px;
+width:400px;
+height:500px;
+}
+
+#hack-deploymentform #id_description{
+  width:300px;
+}
