@@ -8,26 +8,33 @@
 
 {% block body %}
     {% user_display other_user as other_user_display %}
-    
+
     <div class="vcard">
         {% if other_user.get_profile.name %}
             <h1>{% blocktrans %}Profile for <span class="nickname">{{ other_user_display }}</span>{% endblocktrans %}</h1>
         {% else %}
             <h1>{% blocktrans %}Profile for <span class="fn nickname">{{ other_user_display }}</span>{% endblocktrans %}</h1>
         {% endif %}
-        
+
         <h2><a href="{% url profile_list %}">All profiles</a></h2>
-        
+
         <div class="profile_info">
             {% if other_user.get_full_name %}
                 <p><b>{% trans "Name" %}</b>: <span class="fn">{{ other_user.get_full_name }}</span></p>
-            {% endif %}
+                {% endif %}
+
+            <p><b>{% trans "Following these Hacks" %}</b>:
+            {% for hack in other_user.hack_set.all %}
+                <a href="{% url hack hack.slug %}"><li>{{hack}}</li></a>
+            {% endfor %}
+            </p>
+
             <p><b>{% trans "Github account" %}</b>:
                     {% if other_user.get_profile.github_url %}
                         <span class="fn"><a href="http://github.com/{{ other_user.get_profile.github_url }}">{{ other_user.get_profile.github_url }}</a></span>
                     {% endif %}
             </p>
-            <p><b>{% trans "BitBucket account" %}</b>: 
+            <p><b>{% trans "BitBucket account" %}</b>:
                     {% if other_user.get_profile.bitbucket_url %}
                         <span class="fn"><a href="http://bitbucket.org/{{ other_user.get_profile.bitbucket_url }}">{{ other_user.get_profile.bitbucket_url }}</a></span>
                     {% endif %}</p>
@@ -36,11 +43,11 @@
                         <span class="fn"><a href="http://code.google.com/u/{{ other_user.get_profile.google_code_url|urlize }}/">{{ other_user.get_profile.google_code_url|urlize }}</a></span>
                     {% endif %}</p>
         </div>
-                
+
         {% if is_me %}
             <p><a href="{% url profile_edit %}" rel="facebox">Edit profile</a></p>
         {% endif %}
-        
+
     </div>
 {% endblock %}
 
