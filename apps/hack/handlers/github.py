@@ -4,6 +4,7 @@ from hack.utils import uniquer
 import hack
 
 def pull(cur_hack):
+    print 'fetching metadata for %s' % cur_hack
 
     if hasattr(settings, "GITHUB_ACCOUNT") and hasattr(settings, "GITHUB_KEY"):
         github   = Github(username=settings.GITHUB_ACCOUNT, api_token=settings.GITHUB_KEY)
@@ -29,17 +30,21 @@ def pull(cur_hack):
     except:
       print 'unable to get collaborators'
 
+    cur_hack.save()
+    #try:
+    local_commits = cur_hack.commit_set.all()
     try:
-      local_commits = cur_hack.commit_set.all()
       commits = github.commits.list(repo_name)
-      for commit in commits:
-        if not local_commits or commit.committed_date > local_commits[0]:
-          c = hack.models.Commit()
-          c.commit_date = commit.committed_date
-          c.hack = cur_hack
-          c.save()
     except:
-      print 'unable to get commits'
+      return cur_hack
 
+    for commit in commits:
+      if not local_commits or commit.committed_date > local_commits[0].commit_date:
+        c = hack.models.Commit()
+        c.commit_date = commit.committed_date
+        c.hack = cur_hack
+        c.save()
+    #except:
+    #  print 'unable to get commits'
 
     return cur_hack
