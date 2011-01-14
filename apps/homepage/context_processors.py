@@ -1,7 +1,15 @@
 from django.core.urlresolvers import reverse
 from django.core.cache import cache
 
-from homepage.models import Tab
+from homepage.models import Tab, ProblemTab
+
+def problemdefinition_tabs(request):
+    cache_key = 'sitewide:problemdefinition_tabs'
+    problemdefinition_tabs = cache.get(cache_key)
+    if problemdefinition_tabs is None:
+        problemdefinition_tabs = ProblemTab.objects.all().select_related('problemdefinition')
+        cache.set(cache_key, problemdefinition_tabs, 60 * 5 * 0)
+    return {'problemdefinition_tabs': problemdefinition_tabs}
 
 def grid_tabs(request):
     cache_key = 'sitewide:grid_tabs'

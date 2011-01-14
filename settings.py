@@ -137,6 +137,7 @@ TEMPLATE_CONTEXT_PROCESSORS = [
 
     "hack.context_processors.used_hacks_list",
     "homepage.context_processors.grid_tabs",
+    "homepage.context_processors.problemdefinition_tabs",
     "homepage.context_processors.current_path",
 ]
 

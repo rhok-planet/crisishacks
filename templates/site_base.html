@@ -24,6 +24,14 @@
             <li><a href="{% url grid tab.grid.slug %}">{{ tab.grid.title }}</a></li>
         {% endfor %}
         <li><a href="{% url grids %}">&raquo; more grids...</a></li>
+        {% for tab in problemdefinition_tabs %}
+        <li class="problem_tab">
+          <a href="{% url problemdefinition tab.problemdefinition.slug %}">
+          {{ tab.problemdefinition.title }}</a>
+        </li>
+        {% endfor %}
+        <li class="problem_tab"><a href="{% url problemdefinitions %}">&raquo; more problem
+          definitions...</a></li>
     </ul>
 {% endblock %}
 

@@ -1,7 +1,13 @@
 from django.contrib import admin
 
-from homepage.models import Dpotw, Gotw, Tab
+from homepage.models import Dpotw, Gotw, Tab, ProblemTab
 
+class ProblemTabAdmin(admin.ModelAdmin):
+
+    list_display = ('problemdefinition', 'order', )
+    list_editable = ('order', )
+
+admin.site.register(ProblemTab, ProblemTabAdmin)
 
 class TabAdmin(admin.ModelAdmin):
 
