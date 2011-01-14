@@ -79,6 +79,7 @@ class Repo(BaseModel):
 downloads_re = re.compile(r'<td style="text-align: right;">[0-9]{1,}</td>')
 
 repo_url_help_text = "Enter your project repo hosting URL here.<br />Example: http://github.com/rhok-planet/crisishacks"
+related_url_help_text = "If you have an existing webpage that describes this project, enter it here"
 category_help_text = ""
 
 class Hack(BaseModel):
@@ -86,6 +87,7 @@ class Hack(BaseModel):
     title           = models.CharField(_("Title"), max_length="100")
     slug            = models.SlugField(_("Slug"), help_text="Slugs will be lowercased", unique=True)
     description     = models.SlugField(_("Slug"), help_text="Slugs will be lowercased")
+    related_url     = models.URLField(_("related URL"), help_text=repo_url_help_text, blank=True)
     category        = models.ForeignKey(Category, verbose_name="Installation", help_text=category_help_text)
     repo            = models.ForeignKey(Repo, null=True)
     repo_description= models.TextField(_("Repo Description"), blank=True)
