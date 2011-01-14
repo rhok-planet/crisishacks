@@ -91,12 +91,6 @@
                     {% endfor %}
                 </tr>                
                 <tr class="even">
-                    <td># Deployments</td>
-                    {% for grid_hack in grid_hacks %}
-                        <td>{{ grid_hack.hack.deployment_set.count }}</td>
-                    {% endfor %}
-                </tr>
-                <tr class="odd">
                     <td># Using This</td>
                     {% for grid_hack in grid_hacks %}
                         <td class="usage-container">
@@ -113,7 +107,7 @@
                             </span>
                         </td>
                     {% endfor %}
-                </tr>
+                </td>
                 <tr class="even">
                     <td>Downloads</td>
                     {% for grid_hack in grid_hacks %}
