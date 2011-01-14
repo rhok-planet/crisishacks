@@ -1,0 +1,31 @@
+<div id="target">
+    <h2>{% if problemdefinitions.count %}Problem Definitions{% else %}No problemdefinitions found{% endif %}</h2>
+    {% if problemdefinitions.count %}
+        <p class="clickable">Click a problemdefinition to add your problemdefinition to it.</p>      
+    {% endif %}
+    {% for problemdefinition in problemdefinitions %}
+  
+
+        <dl class="problemdefinition-item" id="problemdefinition-{{ problemdefinition.id }}">
+
+            <dt><strong>{{ problemdefinition.title }}</strong></dt>
+            <dd class="description">{{ problemdefinition.description }}</dd>        
+        </dl>
+    {% endfor %}
+    <script type="text/javascript">
+       
+        {% for problemdefinition in problemdefinitions %}
+            $('#problemdefinition-{{ problemdefinition.id }}').mouseover(function() {
+                $('#problemdefinition-{{ problemdefinition.id }}').addClass("clickable");
+            });
+            $('#problemdefinition-{{ problemdefinition.id }}').mouseout(function() {
+                $('#problemdefinition-{{ problemdefinition.id }}').removeClass("clickable");
+            });
+            $('#problemdefinition-{{ problemdefinition.id }}').click(function() {
+                $('form:first').attr('action', "{% url add_problemdefinition_hack problemdefinition.slug %}");                
+                $("form#find-a-problemdefinition-form").submit();
+            });
+        {% endfor %}
+
+    </script>    
+</div>

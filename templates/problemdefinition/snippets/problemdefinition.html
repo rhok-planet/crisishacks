@@ -1,0 +1,9 @@
+<dl class="problemdefinition-item" id="problemdefinition-{{ problemdefinition.id }}">
+    <dt><strong><a href="{% url problemdefinition problemdefinition.slug %}">{{ problemdefinition.title }}</a></strong></dt>
+    <dd class="date"><strong>Added</strong> {{ problemdefinition.created|date:"D d M Y H:i:s" }}</dd>
+    <dd class="counts">
+            <strong>Hacks</strong> {{ problemdefinition.problemdefinitionhack_count }}
+            <strong>Features</strong> {{ problemdefinition.feature_count }}
+    </dd>
+    <dd class="description">{{ problemdefinition.description }}</dd>
+</dl>

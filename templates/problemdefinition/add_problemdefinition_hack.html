@@ -1,0 +1,59 @@
+{% extends "problemdefinition/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}Add a hack to Problem Definition '{{ problemdefinition.title }}'{% endblock %}
+
+{% block subnav %}
+        &nbsp;
+{% endblock %}
+
+{% block body %}
+
+    <h1><a href="{% url home %}">home</a> / <a href="{% url problemdefinitions %}">problemdefinitions</a> / Add a hack to problemdefinition '<a href="{% url problemdefinition problemdefinition.slug %}">{{ problemdefinition.title }}</a>'</h1>
+    
+    {# TODO replace with a proper message #}
+    {% if message|length %}<p class="editable-cell">{{ message }}</p>{% endif %}
+    
+    <form method="post" id="problemdefinition-hack-form">
+        {% csrf_token %}
+        <fieldset>
+            <input id="search-field" type="text" name="q" value="search hacks" autocomplete="off" />
+            <input name="hack" id="hack-field" value="0" type="hidden" />
+            <div id="target-parent"><div id="target"></div></div>
+        
+        </fieldset>
+
+    </form>
+    
+    <h2>What if the Hack isn't in the database?<h2>
+        
+    <p><a class="large awesome darkbrown" href="{% url add_hack %}">How about adding it? »</a></p>
+                
+
+
+{% endblock %}
+
+{% block extra_body %}
+<script type="text/javascript">
+    $(function() {          
+        $('input#search-field').focus();
+
+        $('input#search-field').keyup(function() {
+             var search_text = $('input#search-field').attr('value');
+             var search_text = '{% url ajax_hack_list %}?q=' + search_text;
+
+             $.get(search_text, function(data) {
+               $('#target').html(data).show("slow");
+             });
+        });
+
+        $("#problemdefinition-hack-form").keypress(function(e) {
+              if (e.which == 13) {
+                return false;
+              };
+        });       
+
+    });    
+</script>      
+{% endblock %}      

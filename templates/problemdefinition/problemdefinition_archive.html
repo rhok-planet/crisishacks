@@ -1,0 +1,20 @@
+{% extends "problemdefinition/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}Problem Definitions{% endblock %}
+
+{% block subnav %}
+        &nbsp;
+{% endblock %}
+
+{% block body %}
+
+    <h1>Problem Definitions</h1>
+    
+    <div id="problemdefinition-listing">
+    {% for problemdefinition in latest %}
+        {% include "problemdefinition/snippets/problemdefinition.html" %}
+    {% endfor %}
+    </div>
+{% endblock %}

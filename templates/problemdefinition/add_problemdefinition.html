@@ -1,0 +1,36 @@
+{% extends "problemdefinition/base.html" %}
+
+{% load i18n %}
+{% load uni_form_tags %}
+
+{% block head_title %}Add new problemdefinition{% endblock %}
+
+{% block body %}
+
+    <h1>Add new problemdefinition</h1>
+    
+    <p>Problem Definitions added here are publicly listed at <a href="http://www.djangohacks.com/problemdefinitions/">http://www.djangohacks.com/problemdefinitions/</a>.</p>
+    <p>Periodically, the Django Hacks team will add some of these problemdefinitions to the top navigation bar!</p>
+    
+    <form class="uniForm" method="post">
+        {% csrf_token %}
+        <fieldset>
+            {{ form|as_uni_form }}
+            <div class="form_block">
+                <input type="submit" name="add" value="Add new problemdefinition »">
+            </div>            
+        </fieldset>
+
+    </form>
+
+{% endblock %}
+
+{% block extra_body %}
+<script type="text/javascript">
+    $(function() {          
+        $('input#search-field').focus();
+        
+    });    
+</script>      
+{% endblock %}      
+        

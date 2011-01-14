@@ -1,0 +1,36 @@
+{% extends "problemdefinition/base.html" %}
+
+{% load i18n %}
+{% load uni_form_tags %}
+
+{% block head_title %}Add feature for comparison to problemdefinition '{{ problemdefinition.title }}'{% endblock %}
+
+{% block subnav %}
+        &nbsp;
+{% endblock %}
+
+{% block body %}
+
+    <h1><a href="{% url home %}">home</a> / <a href="{% url problemdefinitions %}">problemdefinitions</a> / Add feature for comparison to problemdefinition '<a href="{% url problemdefinition problemdefinition.slug %}">{{ problemdefinition.title }}</a>'</h1>    
+
+    
+    <form class="uniForm" method="post">
+        {% csrf_token %}
+        <fieldset>
+            {{ form|as_uni_form }}
+            <div class="form_block">
+                <input type="submit" name="edit" value="Edit">
+                <a href="{% url problemdefinition problemdefinition.slug %}">cancel</a>    
+            </div>            
+        </fieldset>
+
+    </form>
+
+
+{% endblock %}
+
+{% block extra_body %}
+<script>
+    $("#id_title").focus();
+</script>
+{% endblock %}

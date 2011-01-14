@@ -1,0 +1,24 @@
+{% extends "problemdefinition/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}Problem Definitions{% endblock %}
+
+{% block subnav %}
+        &nbsp;
+{% endblock %}
+
+{% block body %}
+
+    <h1>Problem Definitions</h1>
+    
+    <p>
+        <a class="large awesome purple" href="{% url add_problemdefinition %}">add problemdefinition »</a>
+    </p>
+
+    <div id="problemdefinition-listing">
+    {% for problemdefinition in problemdefinitions %}
+        {% include "problemdefinition/snippets/problemdefinition.html" %}
+    {% endfor %}
+    </div>
+{% endblock %}
