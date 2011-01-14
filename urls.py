@@ -18,37 +18,38 @@ urlpatterns = patterns("",
 
     url(r"^$", homepage, name="home"),
 
-    
+
     url(r"^admin/invite_user/$", "pinax.apps.signup_codes.views.admin_invite_user", name="admin_invite_user"),
     url(r"^admin/", include(admin.site.urls)),
     url(r"^about/", include("about.urls")),
-    url(r"^account/", include("pinax.apps.account.urls")),   
+    url(r"^account/", include("pinax.apps.account.urls")),
     url(r"^openid/(.*)", PinaxConsumer()),
     url(r"^profiles/", include("idios.urls")),
     url(r"^notices/", include("notification.urls")),
     url(r"^announcements/", include("announcements.urls")),
     url(r"^hacks/", include("hack.urls")),
-    url(r"^grids/", include("grid.urls")),  
+    url(r"^grids/", include("grid.urls")),
+    url(r"^problemdefinitions/", include("problemdefinition.urls")),
     url(r"^search/", include("searchv1.urls")),
-    url(r"^feeds/", include("feeds.urls")),      
-    
+    url(r"^feeds/", include("feeds.urls")),
+
     url(r"^categories/(?P<slug>[-\w]+)/$", category, name="category"),
     url(r"^categories/$", homepage, name="categories"),
-    url(r"^packaginator/$", 
+    url(r"^packaginator/$",
                 direct_to_template,
-                {'template': 'hack/packaginator.html'}, 
-                name="packaginator"), 
-                
-    url(r"^packaginate/$", 
+                {'template': 'hack/packaginator.html'},
+                name="packaginator"),
+
+    url(r"^packaginate/$",
                 packaginate,
-                name="packaginate"),                   
-    
+                name="packaginate"),
+
     url(
         regex = '^autocomplete/hack/$',
         view = hack_autocomplete,
-        name    = 'hack_autocomplete',        
+        name    = 'hack_autocomplete',
     )
-    
+
 )
 
 from tastypie.api import Api
@@ -68,7 +69,7 @@ v1_api.register(GotwResource())
 v1_api.register(DpotwResource())
 
 urlpatterns += patterns('',
-    url(r"^api/", include(v1_api.urls)), 
+    url(r"^api/", include(v1_api.urls)),
 )
 
 

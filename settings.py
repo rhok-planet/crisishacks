@@ -167,9 +167,8 @@ INSTALLED_APPS = [
     "pagination",
     "idios",
     "django_extensions",
-	"south",
-	"tastypie",
-	"reversion",
+    "south",
+    "tastypie",
 
     # Pinax
     "pinax.apps.account",
@@ -181,6 +180,7 @@ INSTALLED_APPS = [
     "grid",
     "homepage",
     "hack",
+    "problemdefinition",
     "profiles",
     "searchv1",
     "apiv1",

@@ -16,7 +16,7 @@ def current_path(request):
     if it's not the path to the logout page. This allows us to redirect
     user's back to the page they were viewing before they logged in,
     while making sure we never redirect them back to the logout page!
-    
+
     """
     context = {}
     if request.path not in (reverse('acct_logout'), reverse('acct_signup')):
